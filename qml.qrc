@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>FlistViewButton.qml</file>
+        <file>HomePage.qml</file>
     </qresource>
 </RCC>
