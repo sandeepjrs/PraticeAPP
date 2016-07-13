@@ -44,9 +44,23 @@ Item
             color: "red"
             Text {
                 id: tex11
-                text: qsTr(name, "  ", cost)
+                text: name + "  "+ cost
                 anchors.centerIn: parent
                 font.pixelSize: Screen.pixelDensity*5
+
+
+            }
+            MouseArea
+            {
+                anchors.fill: parent
+                onPressed:  {
+
+                    parent.color ="blue"
+                }
+
+                onReleased:  {
+                    parent.color ="red"
+                }
 
             }
 
