@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
     stModel.addStarterItem(Starter("Shake Rs", "23"));
     stModel.addStarterItem(Starter("Tmt Rs", "52"));
 
+
+
     //chkModel.addRawItem("sandeep", 20);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

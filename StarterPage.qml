@@ -9,6 +9,8 @@ Item
     property real starter_hight
     property real starter_width
     property real starter_index: 3
+
+    signal s_Clicked(string x, string y)
     height: starter_hight
     width: starter_width
     id:root
@@ -35,7 +37,7 @@ Item
             color: "red"
             Text {
                 id: tex11
-                text: stPrice + "  "+ stItem
+                text: stItem + "  "+ stPrice
                 anchors.centerIn: parent
                 font.pixelSize: Screen.pixelDensity*2
 
@@ -51,6 +53,7 @@ Item
 
                 onReleased:  {
                     parent.color ="red"
+                    s_Clicked(stItem,stPrice)
                 }
 
             }
