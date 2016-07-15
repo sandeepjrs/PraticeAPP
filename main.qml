@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick 2.0
+//import and
 
 
 import "./"
@@ -10,76 +11,72 @@ import "./"
 Window {
     id: root
     visible: true
-    height: Screen.height/2
-    width: Screen.width/2
-    //    height: 800/2
-    //    width: 480/2
+    property real c_val
 
-    Rectangle
+Rectangle{
+    anchors.fill: parent
+
+    HomePage
     {
-        id: rect1
-        height: root.height
-        width: root.width
-        //border.color: "black"
-        // radius: rect1.height/2
-        // border.width: 10
+        id:home_page
+        anchors.fill: parent
+        home_hight: root.height
+        home_width: root.width
+        visible: true
 
-        //        HomePage
-        //        {
-        //            home_hight: rect1.height-50
-        //            home_width: rect1.width-50
-        //            anchors.centerIn: parent
+        onHomeClicked:
+        {
+            c_val=homeIndex
 
-        //        }
-
-        Row{
-
-            spacing: 2
-
-
-            Rectangle{
-
-                height: root.height
-                width: root.width/2
-                StarterPage
-                {
-                    //            starter_hight:root.height
-                    //            starter_width: root.width
-
-                    starter_hight:root.height
-                    starter_width: root.width/2
-
-                    onS_Clicked:
-                    {
-                        console.log(x,y)
-                        chkModel.addRawItem(x,Number(y))
-
-                    }
-                }
+            switch(c_val)
+            {
+            case 0 :
+            {
+                 home_page.visible=false
+                break
             }
 
+            case 1 :
+            {
+                console.log("1")
+                break
+            }
 
-            Rectangle{
+            case 2 :
+            {
+                console.log("2")
+                break
+            }
+            default:
+            {
+                console.log("def")
+            }
+            }
 
-                height: root.height
-                width: root.width/2
-                CheckoutPage
-                {
-                    chk_height: root.height
-                    chk_width: root.width/2
-
-
-                }
+            if(c_val==0)
+            {
 
             }
         }
 
-
-
     }
 
-
-
-
 }
+
+
+
+
+
+
+ }
+
+
+
+
+
+
+
+
+
+
 

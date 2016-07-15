@@ -3,29 +3,30 @@ import QtQuick.Window 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick 2.0
+import QtQuick 2.7
 
 Item
 {
     property real home_hight
     property real home_width
     property real home_index: 3
-    height: home_hight
-    width: home_width
+   anchors.fill: parent
+   signal homeClicked(int homeIndex)
     id:root
 
     ListModel {
         id: myModel
 
         ListElement {
-            name: "Apple"
+            name: "Starter"
             cost: 2.45
         }
         ListElement {
-            name: "Orange"
+            name: "Main Course"
             cost: 3.25
         }
         ListElement {
-            name: "Banana"
+            name: "Desert"
             cost: 1.95
         }
     }
@@ -36,15 +37,16 @@ Item
 
 
         Rectangle {
-            height: home_hight > home_width ? home_hight/home_index : home_hight
-            width: home_hight > home_width  ? home_width            : home_width/home_index
+            height:Screen.height
+            width:Screen.width/3
             border.color: "white"
             border.width: 5
             //Layout.alignment: Qt.AlignCenter
             color: "red"
+
             Text {
                 id: tex11
-                text: name + "  "+ cost
+                text: name
                 anchors.centerIn: parent
                 font.pixelSize: Screen.pixelDensity*5
 
@@ -60,6 +62,7 @@ Item
 
                 onReleased:  {
                     parent.color ="red"
+                    homeClicked(index)
                 }
 
             }
@@ -73,10 +76,12 @@ Item
     {
 
 
-        orientation: home_hight > home_width ? Qt.Vertical : Qt.Horizontal
+        orientation: Qt.Horizontal
         anchors.fill: parent
         model: myModel
         delegate: myDeligate
+
+
 
 
     }

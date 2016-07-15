@@ -14,25 +14,43 @@ Item {
     height: chk_height
     width: chk_width
     id:root
-    Component {
-        id: myChkDeligate
-        Rectangle
+
+    Rectangle
+    {
+        id : amt
+        height: 80
+        width: 300
+        color : "blue"
+        radius: rect1.width-rect1.width*.8
+
+        Text
         {
 
-            height: 50
-            width: 200
-            color : "pink"
-            border.color: "white"
-            border.width: 2
+            id :text1
+            text: "Amount :  "
+            font.pixelSize :20
+            anchors.centerIn: parent
 
-            radius: 50
+        }
+    }
+    Component {
+        id: myChkDeligate
+
+        Rectangle
+        {
+            id : rect1
+            height: 80
+            width: 300
+            color : "blue"
+            radius: rect1.width-rect1.width*.4
+
 
             Text
             {
 
                 id :text1
                 text: chkAmount+"    " + chkItem
-                font.pixelSize :10
+                font.pixelSize :rect1.height-rect1.height*.6
                 anchors.centerIn: parent
 
             }
@@ -67,7 +85,9 @@ Item {
         width: chk_width
         model: chkModel
         delegate: myChkDeligate
+        spacing: 10
         currentIndex: 0
+
         add: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
             NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
