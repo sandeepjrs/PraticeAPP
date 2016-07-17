@@ -27,10 +27,7 @@ Window {
             anchors.fill: parent
 
 
-//            Layout.minimumWidth: 360
-//            Layout.minimumHeight: 360
-//            Layout.preferredWidth: 480
-//            Layout.preferredHeight: 640
+
             Tab {
                 title: "Home"
 
@@ -38,12 +35,12 @@ Window {
                 {
                     anchors.fill: parent
 
-                   HomePage
-                   {
-                       home_hight: root.height
-                       home_width: root.width
+                    HomePage
+                    {
+                        home_hight: root.height
+                        home_width: root.width
 
-                   }
+                    }
                 }
 
             }
@@ -57,14 +54,14 @@ Window {
 
                     StarterPage
                     {
-                       starter_hight: root.height
-//                        starter_width: root.width
+                        starter_hight: root.height
+                        //                        starter_width: root.width
                         anchors.fill: parent
                         onS_Clicked:
                         {
                             chkModel.addRawItem(x,Number(y))
                             chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-                            //console.log(chkModel.getTotalCost())
+
                         }
 
                     }
@@ -77,12 +74,14 @@ Window {
 
                 Rectangle
                 {
+                    id: chkRect
                     anchors.fill: parent
 
+
+
                     CheckoutPage
+
                     {
-                        chk_height: root.height
-                        chk_width: root.width
                         onUpdatedCheckoutCost:
                         {
                             chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
@@ -90,6 +89,10 @@ Window {
                         }
 
                     }
+
+
+
+
                 }
 
             }
@@ -99,3 +102,4 @@ Window {
 
 
 }
+

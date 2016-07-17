@@ -11,8 +11,9 @@ Item {
     property real chk_height
     property real chk_width
     property real chk_index: 3
-    height: chk_height
-    width: chk_width
+    property real dotLength : 40
+    property string fullString
+    anchors.fill: parent
     id:root
     signal updatedCheckoutCost(int updatedCheckoutprice)
 
@@ -23,39 +24,68 @@ Item {
         Rectangle
         {
             id : rect1
-            height: 60
+            height: 30
             width: 250
-            color : "blue"
-            //radius: rect1.width-rect1.width*.4
+
 
 
             Text
             {
 
                 id :text1
-                text: chkItem+"    "+chkAmount
-                font.pixelSize :rect1.height-rect1.height*.8
-                anchors.centerIn: parent
+
+                text : index+1+". "+ addDot(chkItem) +"Rs "+chkAmount
+
+                font.pixelSize :30
+
+                onTextChanged:
+                {
+                    text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount
+                    //                    text1.AlignJustify.valueOf(40)
+                    horizontalAlignment: text1.AlignRight
+
+
+
+                }
+
 
             }
 
-
-            MouseArea
+            Rectangle
             {
-                anchors.fill: parent
-                onDoubleClicked:
-                {
-                    onDoubleClicked:
-                    {
+                height: 30
+                width: 30
+                radius: 30/2
+                border.color: "red"
+                border.width: 5
+                anchors.left: text1.right
+                anchors.leftMargin: 20
+                Text {
 
+                    text: qsTr("X")
+                    font.bold: true
+                    font.pixelSize: 30
+                    anchors.centerIn: parent
+                    color: "red"
+                }
+
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked:
+                    {
                         console.log(index)
                         chkModel.removeData(index)
-                       updatedCheckoutCost(updateTotalAmount())
+                        updatedCheckoutCost(updateTotalAmount())
+
 
 
                     }
                 }
             }
+
+
+
         }
     }
 
@@ -65,12 +95,12 @@ Item {
     {
 
         id: chkListView
-        height: chk_height
-        width: chk_width
+        anchors.fill: parent
         model: chkModel
         delegate: myChkDeligate
         spacing: 10
         currentIndex: 0
+
 
         add: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
@@ -92,6 +122,20 @@ Item {
         var val;
         val= chkModel.getTotalCost();
         return val;
+    }
+
+    function addDot(item)
+    {
+        var i;
+        var len;
+        len=item.length;
+        for(i=0;i<dotLength-len;i++)
+        {
+            item=item+".";
+        }
+
+        return item
+
     }
 
 }

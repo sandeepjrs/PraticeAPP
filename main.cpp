@@ -15,18 +15,18 @@ int main(int argc, char *argv[])
 
     CheckoutModel chkModel;
 
-    stModel.addStarterItem(Starter("Fr Chk Rs", "26"));
-    stModel.addStarterItem(Starter("Rost Rs", "28"));
-    stModel.addStarterItem(Starter("Shake Rs", "23"));
-    stModel.addStarterItem(Starter("Tmt Rs", "52"));
-    stModel.addStarterItem(Starter("Fr Chk Rs", "26"));
-    stModel.addStarterItem(Starter("Rost Rs", "28"));
-    stModel.addStarterItem(Starter("Shake Rs", "23"));
-    stModel.addStarterItem(Starter("Tmt Rs", "52"));
-    stModel.addStarterItem(Starter("Fr Chk Rs", "26"));
-    stModel.addStarterItem(Starter("Rost Rs", "28"));
-    stModel.addStarterItem(Starter("Shake Rs", "23"));
-    stModel.addStarterItem(Starter("Tmt Rs", "52"));
+    stModel.addStarterItem(Starter("Fried Chicken", "26"));
+    stModel.addStarterItem(Starter("Rost Chicken", "28"));
+    stModel.addStarterItem(Starter("Shake", "23"));
+    stModel.addStarterItem(Starter("Tmt", "52"));
+    stModel.addStarterItem(Starter("Fr Chk", "26"));
+    stModel.addStarterItem(Starter("Rost", "28"));
+    stModel.addStarterItem(Starter("Shake", "23"));
+    stModel.addStarterItem(Starter("Tmt", "52"));
+    stModel.addStarterItem(Starter("Fr Chk", "26"));
+    stModel.addStarterItem(Starter("Rost", "28"));
+    stModel.addStarterItem(Starter("Shake", "23"));
+    stModel.addStarterItem(Starter("Tmt", "52"));
 
 
 

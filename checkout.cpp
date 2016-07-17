@@ -61,6 +61,16 @@ bool CheckoutModel::removeData(int index)
      return 0;
 }
 
+int CheckoutModel::getAmount(int i)
+{
+    return m_amount.at(i).get_Amount();
+}
+
+QString CheckoutModel::getItem(int i)
+{
+    return m_amount.at(i).get_Itemt();
+}
+
 void CheckoutModel::addRawItem(QString item, int price)
 {
     addCheckoutItem(Checkout(item,price));

@@ -42,7 +42,10 @@ public:
 
     Q_INVOKABLE void addRawItem(QString item,int price);
     Q_INVOKABLE int getTotalCost();
-     Q_INVOKABLE bool removeData(int index);
+    Q_INVOKABLE bool removeData(int index);
+    Q_INVOKABLE int getAmount(int i);
+    Q_INVOKABLE QString getItem(int i);
+
 
 
 
