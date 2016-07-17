@@ -78,7 +78,6 @@ Window {
                     anchors.fill: parent
 
 
-
                     CheckoutPage
 
                     {

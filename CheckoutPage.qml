@@ -8,11 +8,11 @@ import QtQuick 2.0
 Item {
 
 
-    property real chk_height
-    property real chk_width
+    property real chk_height :80
+    property real chk_width :400
     property real chk_index: 3
-    property real dotLength : 40
-    property string fullString
+
+    property real fontSize: 55
     anchors.fill: parent
     id:root
     signal updatedCheckoutCost(int updatedCheckoutprice)
@@ -21,51 +21,71 @@ Item {
         id: myChkDeligate
 
 
-        Rectangle
+        Row
         {
-            id : rect1
-            height: 30
-            width: 250
+            spacing: 10
 
 
-
-            Text
+            Rectangle
             {
+                id : rect1
+                height: chk_height
+                width: chk_width
+                color: "lightgrey"
 
-                id :text1
 
-                text : index+1+". "+ addDot(chkItem) +"Rs "+chkAmount
 
-                font.pixelSize :30
-
-                onTextChanged:
+                Text
                 {
-                    text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount
-                    //                    text1.AlignJustify.valueOf(40)
-                    horizontalAlignment: text1.AlignRight
 
+                    id :text1
+                    text : "  "+chkItem
+                    //anchors.left: rect1.right
+                    anchors.verticalCenter: rect1
+                    font.pixelSize :fontSize
+                    font.family: "Freedom"
 
-
+                    //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
                 }
-
-
             }
 
             Rectangle
             {
-                height: 30
-                width: 30
-                radius: 30/2
+                id : rect2
+                height: chk_height
+                width: chk_width
+                color: "lightgrey"
+                Text
+                {
+
+                    id :text2
+
+                    text : "Rs. "+chkAmount
+                    anchors.centerIn: parent
+                    anchors.verticalCenter: rect2
+                    font.pixelSize :fontSize
+                    font.family: "Freedom"
+
+                    //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
+                }
+            }
+
+            Rectangle
+            {
+                id : delRect
+                height: chk_height
+                width: chk_height
+                //radius: 32/2
                 border.color: "red"
-                border.width: 5
+                border.width: 7
                 anchors.left: text1.right
-                anchors.leftMargin: 20
+
                 Text {
 
-                    text: qsTr("X")
+                    text: qsTr("x")
                     font.bold: true
-                    font.pixelSize: 30
-                    anchors.centerIn: parent
+                    font.pixelSize: fontSize
+                    anchors.centerIn: delRect
                     color: "red"
                 }
 
@@ -91,6 +111,7 @@ Item {
 
 
 
+
     ListView
     {
 
@@ -99,7 +120,8 @@ Item {
         model: chkModel
         delegate: myChkDeligate
         spacing: 10
-        currentIndex: 0
+
+        anchors.leftMargin: 10
 
 
         add: Transition {
@@ -124,19 +146,19 @@ Item {
         return val;
     }
 
-    function addDot(item)
-    {
-        var i;
-        var len;
-        len=item.length;
-        for(i=0;i<dotLength-len;i++)
-        {
-            item=item+".";
-        }
+//    function addDot(item)
+//    {
+//        var i;
+//        var len;
+//        len=item.length;
+//        for(i=0;i<dotLength-len;i++)
+//        {
+//            item=item+".";
+//        }
 
-        return item
+//        return item
 
-    }
+//    }
 
 }
 
