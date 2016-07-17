@@ -14,43 +14,27 @@ Item {
     height: chk_height
     width: chk_width
     id:root
+    signal updatedCheckoutCost(int updatedCheckoutprice)
 
-    Rectangle
-    {
-        id : amt
-        height: 80
-        width: 300
-        color : "blue"
-        radius: rect1.width-rect1.width*.8
-
-        Text
-        {
-
-            id :text1
-            text: "Amount :  "
-            font.pixelSize :20
-            anchors.centerIn: parent
-
-        }
-    }
     Component {
         id: myChkDeligate
+
 
         Rectangle
         {
             id : rect1
-            height: 80
-            width: 300
+            height: 60
+            width: 250
             color : "blue"
-            radius: rect1.width-rect1.width*.4
+            //radius: rect1.width-rect1.width*.4
 
 
             Text
             {
 
                 id :text1
-                text: chkAmount+"    " + chkItem
-                font.pixelSize :rect1.height-rect1.height*.6
+                text: chkItem+"    "+chkAmount
+                font.pixelSize :rect1.height-rect1.height*.8
                 anchors.centerIn: parent
 
             }
@@ -63,10 +47,10 @@ Item {
                 {
                     onDoubleClicked:
                     {
-                        //                       chkListView.currentIndex=index
+
                         console.log(index)
                         chkModel.removeData(index)
-                        //textAmt.text = "Amount : " +  updateTotalAmount()
+                       updatedCheckoutCost(updateTotalAmount())
 
 
                     }
