@@ -30,7 +30,7 @@ Item {
             {
                 id : rect1
                 height: chk_height
-                width: chk_width
+                width: chk_width+50
                 color: "lightgrey"
 
 
@@ -46,6 +46,22 @@ Item {
                     font.family: "Freedom"
 
                     //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
+                }
+            }
+            Rectangle
+            {
+                id : rect3
+                height: chk_height
+                width: chk_width-chk_width*.5
+                color: "lightgrey"
+
+
+                Row
+                {
+                    Text { font.pointSize: 30; text: chkSingleItemPrice }
+                    Text { font.pointSize: 30; text: " x " }
+                    Text { font.pointSize: 30; text: chkQuantity}
+                    anchors.centerIn: parent
                 }
             }
 
@@ -69,6 +85,7 @@ Item {
                     //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
                 }
             }
+
 
             Rectangle
             {
@@ -146,19 +163,19 @@ Item {
         return val;
     }
 
-//    function addDot(item)
-//    {
-//        var i;
-//        var len;
-//        len=item.length;
-//        for(i=0;i<dotLength-len;i++)
-//        {
-//            item=item+".";
-//        }
+    //    function addDot(item)
+    //    {
+    //        var i;
+    //        var len;
+    //        len=item.length;
+    //        for(i=0;i<dotLength-len;i++)
+    //        {
+    //            item=item+".";
+    //        }
 
-//        return item
+    //        return item
 
-//    }
+    //    }
 
 }
 

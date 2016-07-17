@@ -14,8 +14,7 @@ Window {
     id: root
     visible: true
     property real c_val
-
-
+    property real quantity
 
     Rectangle{
         anchors.fill: parent
@@ -55,11 +54,21 @@ Window {
                     StarterPage
                     {
                         starter_hight: root.height
-                        //                        starter_width: root.width
                         anchors.fill: parent
                         onS_Clicked:
                         {
-                            chkModel.addRawItem(x,Number(y))
+
+//                            if(chkModel.searchItemGetQuantity(itm)==0)
+//                            {
+//                                quantity=1
+//                            }
+//                            else
+//                            {
+//                                quantity=chkModel.searchItemGetQuantity(itm)+1;
+//                            }
+//                                console.log(quantity)
+
+                            chkModel.addRawItem(itm,Number(prc))
                             chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
 
                         }

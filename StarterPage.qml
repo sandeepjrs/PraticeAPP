@@ -16,7 +16,7 @@ Item
 
 
 
-    signal s_Clicked(string x, string y)
+    signal s_Clicked(string itm, string prc)
     height: starter_hight
     width: starter_width
     id:root
