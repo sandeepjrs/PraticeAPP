@@ -6,9 +6,15 @@ import QtQuick 2.0
 
 Item
 {
-    property real starter_hight
-    property real starter_width
-    property real starter_index: 3
+    property real starter_hight : Screen.height
+    property real starter_width : Screen.width
+    property real starter_colum: 5
+    property real starter_row: 3
+    property real marginBetweenEachCell: 4
+    property real widthForOneCell: (starter_width- (marginBetweenEachCell*starter_colum))/starter_colum
+    property real heightForOneCell : (starter_hight-marginBetweenEachCell*starter_row)/starter_row
+
+
 
     signal s_Clicked(string x, string y)
     height: starter_hight
@@ -17,29 +23,24 @@ Item
 
 
 
+
     Component {
         id: myDeligate
 
 
         Rectangle {
-            //     height: starter_hight > starter_width ? starter_hight/starter_index : starter_hight
-            //     width: starter_hight > starter_width  ? starter_width            : starter_width/starter_index
 
-            //            height: starter_hight/4
-            //            width: starter_width/4
+            height: heightForOneCell
+            width: widthForOneCell
 
-            height: 100
-            width: 100
-            radius: 20
             border.color: "white"
-            border.width: 1
-            //Layout.alignment: Qt.AlignCenter
+            border.width: 3
             color: "red"
             Text {
                 id: tex11
                 text: stItem + "  "+ stPrice
                 anchors.centerIn: parent
-                font.pixelSize: Screen.pixelDensity*2
+                font.pixelSize: 30
 
 
             }
@@ -54,6 +55,7 @@ Item
                 onReleased:  {
                     parent.color ="red"
                     s_Clicked(stItem,stPrice)
+                    console.log(starter_width)
                 }
 
             }
@@ -65,11 +67,15 @@ Item
 
     GridView
     {
-        height: starter_hight
-        width: starter_width
+
+        anchors.fill: parent
+        anchors.leftMargin: marginBetweenEachCell*2.5
+
+        cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: stModel
-//        flow: GridView.FlowLeftToRight
+
         delegate: myDeligate
+
 
 
     }

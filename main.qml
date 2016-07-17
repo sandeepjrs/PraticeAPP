@@ -27,10 +27,10 @@ Window {
             anchors.fill: parent
 
 
-            Layout.minimumWidth: 360
-            Layout.minimumHeight: 360
-            Layout.preferredWidth: 480
-            Layout.preferredHeight: 640
+//            Layout.minimumWidth: 360
+//            Layout.minimumHeight: 360
+//            Layout.preferredWidth: 480
+//            Layout.preferredHeight: 640
             Tab {
                 title: "Home"
 
@@ -57,8 +57,9 @@ Window {
 
                     StarterPage
                     {
-                        starter_hight: root.height
-                        starter_width: root.width
+                       starter_hight: root.height
+//                        starter_width: root.width
+                        anchors.fill: parent
                         onS_Clicked:
                         {
                             chkModel.addRawItem(x,Number(y))

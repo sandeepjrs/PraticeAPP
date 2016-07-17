@@ -37,8 +37,8 @@ Item
 
 
         Rectangle {
-            height:Screen.height
-            width:Screen.width/3
+            height:300
+            width:300
             border.color: "white"
             border.width: 5
             //Layout.alignment: Qt.AlignCenter

@@ -76,10 +76,10 @@ int CheckoutModel::getTotalCost()
        am+=m_amount.at(i).get_Amount();
 
     }
-    qWarning()<<"inside if  : "<<am;
+
     return am;
    }
-   qWarning()<<"outside if";
+
    return m_amount.at(0).get_Amount();
 
 }
