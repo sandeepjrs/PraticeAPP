@@ -1,37 +1,37 @@
-#ifndef STARTER_H
-#define STARTER_H
+#ifndef DESERT_H
+#define DESERT_H
+
+
 #include <QAbstractListModel>
 
 
-class Starter
+class Desert
 {
 public:
-    Starter(const QString &sId,const QString &stItem, const QString &stPrice);
+    Desert(const QString &stItem, const QString &stPrice);
 
     QString get_stItem() const;
     QString get_stPrice() const;
-    QString get_stId() const;
+
 private:
     QString m_stItem;
     QString m_stPrice;
-    QString m_sid;
 };
 
 
 
 
-class StarterModel : public QAbstractListModel
+class DesertModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
     enum StarterRoles {
         e_stItemRole = Qt::UserRole + 1,
-        e_stPriceRole,
-        e_sId
+        e_stPriceRole
     };
 
-    StarterModel(QObject *parent = 0);
-    void addStarterItem(const Starter &starter);
+    DesertModel(QObject *parent = 0);
+    void addDesertItem(const Desert &desert);
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
      QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
@@ -42,7 +42,8 @@ protected:
 
 
 private :
-    QList<Starter> m_starters;
+    QList<Desert> m_Deserts;
 };
 
-#endif // STARTER_H
+
+#endif // DESERT_H

@@ -6,23 +6,20 @@ import QtQuick 2.0
 
 Item
 {
-    property real starter_hight : Screen.height
-    property real starter_width : Screen.width
-    property real starter_colum: 5
-    property real starter_row: 3
+    property real desert_hight : Screen.height
+    property real desert_width : Screen.width
+    property real desert_colum: 5
+    property real desert_row: 3
     property real marginBetweenEachCell: 4
-    property real widthForOneCell: (starter_width- (marginBetweenEachCell*starter_colum))/starter_colum
-    property real heightForOneCell : (starter_hight-marginBetweenEachCell*starter_row)/starter_row
+    property real widthForOneCell: (desert_width- (marginBetweenEachCell*desert_colum))/desert_colum
+    property real heightForOneCell : (desert_hight-marginBetweenEachCell*desert_row)/desert_row
 
 
 
-    signal s_Clicked(string itm, string prc)
-    height: starter_hight
-    width: starter_width
+    signal d_Clicked(string itm, string prc)
+    height: desert_hight
+    width: desert_width
     id:root
-
-
-
 
     Component {
         id: myDeligate
@@ -38,7 +35,7 @@ Item
             color: "red"
             Text {
                 id: tex11
-                text: stId+" "+stItem + "  "+ stPrice
+                text: desertItem + "  "+ desertPrice
                 anchors.centerIn: parent
                 font.pixelSize: 30
 
@@ -54,7 +51,7 @@ Item
 
                 onReleased:  {
                     parent.color ="red"
-                    s_Clicked(stItem,stPrice)
+                    d_Clicked(desertItem,desertPrice)
 
                 }
 
@@ -73,7 +70,7 @@ Item
         anchors.leftMargin: marginBetweenEachCell*2.5
 
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
-        model: stModel
+        model: desertModel
 
         delegate: myDeligate
 

@@ -8,26 +8,36 @@ import QtQuick 2.7
 Item
 {
     property real home_hight
-    property real home_width
-    property real home_index: 3
-   anchors.fill: parent
-   signal homeClicked(int homeIndex)
+    property real home_width :Screen.width
+    property real home_index: 2
+
+    property real home_colum: 2
+    property real home_row: 2
+    property real marginBetweenEachCell: 5
+    property real widthForOneCell: (home_width- (marginBetweenEachCell*home_colum))/home_colum
+    property real heightForOneCell : (home_hight-marginBetweenEachCell*home_row)/home_row
+    anchors.fill: parent
+    signal homeClicked(int homeIndex)
     id:root
 
     ListModel {
         id: myModel
 
         ListElement {
+            name: "New Order"
+
+        }
+        ListElement {
             name: "Starter"
-            cost: 2.45
+
         }
         ListElement {
             name: "Main Course"
-            cost: 3.25
+
         }
         ListElement {
             name: "Desert"
-            cost: 1.95
+
         }
     }
 
@@ -37,8 +47,8 @@ Item
 
 
         Rectangle {
-            height:300
-            width:300
+            height:heightForOneCell
+            width:widthForOneCell
             border.color: "white"
             border.width: 5
             //Layout.alignment: Qt.AlignCenter
@@ -72,17 +82,17 @@ Item
         }
     }
 
-    ListView
+    GridView
     {
 
 
-        orientation: Qt.Horizontal
+
+        cellWidth: widthForOneCell
+        cellHeight: heightForOneCell
         anchors.fill: parent
         model: myModel
         delegate: myDeligate
-
-
-
+        interactive: false
 
     }
 

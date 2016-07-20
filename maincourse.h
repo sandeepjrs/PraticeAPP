@@ -1,37 +1,38 @@
-#ifndef STARTER_H
-#define STARTER_H
+#ifndef MAINCOURSE_H
+#define MAINCOURSE_H
+
+
+
 #include <QAbstractListModel>
 
 
-class Starter
+class MainCourse
 {
 public:
-    Starter(const QString &sId,const QString &stItem, const QString &stPrice);
+    MainCourse(const QString &stItem, const QString &stPrice);
 
     QString get_stItem() const;
     QString get_stPrice() const;
-    QString get_stId() const;
+
 private:
     QString m_stItem;
     QString m_stPrice;
-    QString m_sid;
 };
 
 
 
 
-class StarterModel : public QAbstractListModel
+class MainCourseModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
     enum StarterRoles {
         e_stItemRole = Qt::UserRole + 1,
-        e_stPriceRole,
-        e_sId
+        e_stPriceRole
     };
 
-    StarterModel(QObject *parent = 0);
-    void addStarterItem(const Starter &starter);
+    MainCourseModel(QObject *parent = 0);
+    void addMainCourseItem(const MainCourse &mainCourse);
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
      QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
@@ -42,7 +43,7 @@ protected:
 
 
 private :
-    QList<Starter> m_starters;
+    QList<MainCourse> m_MainCourses;
 };
 
-#endif // STARTER_H
+#endif // MAINCOURSE_H

@@ -1,7 +1,7 @@
 #include "starter.h"
 
-Starter::Starter(const QString &stItem, const QString &stPrice)
-    : m_stItem(stItem), m_stPrice(stPrice)
+Starter::Starter(const QString &sId,const QString &stItem, const QString &stPrice)
+    : m_stItem(stItem), m_stPrice(stPrice), m_sid(sId)
 {
 
 }
@@ -15,6 +15,11 @@ QString Starter::get_stItem() const
 QString Starter::get_stPrice() const
 {
     return m_stPrice;
+}
+
+QString Starter::get_stId() const
+{
+    return m_sid;
 }
 
 
@@ -47,6 +52,8 @@ QVariant StarterModel::data(const QModelIndex &index, int role) const
             return starterObject.get_stItem();
         else if (role == e_stPriceRole)
             return starterObject.get_stPrice();
+        else if(role==e_sId)
+            return starterObject.get_stId();
         return QVariant();
 
 }
@@ -56,6 +63,7 @@ QHash<int, QByteArray> StarterModel::roleNames() const
     QHash<int, QByteArray> roles;
        roles[e_stItemRole] = "stItem";
        roles[e_stPriceRole] = "stPrice";
+       roles[e_sId]="stId";
        return roles;
 
 }

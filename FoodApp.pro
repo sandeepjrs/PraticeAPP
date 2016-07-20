@@ -5,7 +5,9 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     checkout.cpp \
-    starter.cpp
+    starter.cpp \
+    desert.cpp \
+    maincourse.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,12 +19,15 @@ include(deployment.pri)
 
 HEADERS += \
     checkout.h \
-    starter.h
+    starter.h \
+    desert.h \
+    maincourse.h
 
 DISTFILES += \
     android/AndroidManifest.xml \
     android/res/values/libs.xml \
-    android/build.gradle
+    android/build.gradle \
+    menu.json
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

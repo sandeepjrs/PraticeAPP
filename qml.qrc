@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MainForm.ui.qml</file>
         <file>FlistViewButton.qml</file>
         <file>HomePage.qml</file>
         <file>StarterPage.qml</file>
         <file>CheckoutPage.qml</file>
+        <file>DesertPage.qml</file>
+        <file>MainCoursePage.qml</file>
     </qresource>
 </RCC>

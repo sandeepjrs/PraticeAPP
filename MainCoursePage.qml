@@ -6,23 +6,20 @@ import QtQuick 2.0
 
 Item
 {
-    property real starter_hight : Screen.height
-    property real starter_width : Screen.width
-    property real starter_colum: 5
-    property real starter_row: 3
+    property real mainCourse_hight : Screen.height
+    property real mainCourse_width : Screen.width
+    property real mainCourse_colum: 5
+    property real mainCourse_row: 3
     property real marginBetweenEachCell: 4
-    property real widthForOneCell: (starter_width- (marginBetweenEachCell*starter_colum))/starter_colum
-    property real heightForOneCell : (starter_hight-marginBetweenEachCell*starter_row)/starter_row
+    property real widthForOneCell: (mainCourse_width- (marginBetweenEachCell*mainCourse_colum))/mainCourse_colum
+    property real heightForOneCell : (mainCourse_hight-marginBetweenEachCell*mainCourse_row)/mainCourse_row
 
 
 
-    signal s_Clicked(string itm, string prc)
-    height: starter_hight
-    width: starter_width
+    signal mc_Clicked(string itm, string prc)
+    height: mainCourse_hight
+    width: mainCourse_width
     id:root
-
-
-
 
     Component {
         id: myDeligate
@@ -38,7 +35,7 @@ Item
             color: "red"
             Text {
                 id: tex11
-                text: stId+" "+stItem + "  "+ stPrice
+                text: mainCourseItem + "  "+ mainCoursePrice
                 anchors.centerIn: parent
                 font.pixelSize: 30
 
@@ -54,7 +51,7 @@ Item
 
                 onReleased:  {
                     parent.color ="red"
-                    s_Clicked(stItem,stPrice)
+                    mc_Clicked(MainCourseItem,MainCoursePrice)
 
                 }
 
@@ -73,7 +70,7 @@ Item
         anchors.leftMargin: marginBetweenEachCell*2.5
 
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
-        model: stModel
+        model: mainCourseModel
 
         delegate: myDeligate
 
