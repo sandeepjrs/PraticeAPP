@@ -33,7 +33,11 @@ public:
     StarterModel(QObject *parent = 0);
     void addStarterItem(const Starter &starter);
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
-     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+
+
+    QList<Starter> getStarterList();
+
 
 
 protected:
@@ -42,7 +46,7 @@ protected:
 
 
 private :
-    QList<Starter> m_starters;
+    static QList<Starter> m_starters;
 };
 
 #endif // STARTER_H

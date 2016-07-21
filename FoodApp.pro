@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     checkout.cpp \
     starter.cpp \
     desert.cpp \
-    maincourse.cpp
+    maincourse.cpp \
+    search.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,7 +22,8 @@ HEADERS += \
     checkout.h \
     starter.h \
     desert.h \
-    maincourse.h
+    maincourse.h \
+    search.h
 
 DISTFILES += \
     android/AndroidManifest.xml \

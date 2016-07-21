@@ -226,7 +226,41 @@ Window {
                 id: desTab
                 Rectangle
                 {
+
+
                     anchors.fill: parent
+
+                    Rectangle
+                    {
+                        border.color: black
+                        border.width: 2
+                        height: 50
+                        width: 300
+                        Row
+                        {
+                            spacing: 10
+                            TextEdit
+                            {
+                                id: findText
+                                height: 50
+                                width: 150
+                                text: "hello"
+                                font.pixelSize: 50
+
+                            }
+                            Button
+                            {
+                                height: 50
+                                width: 150
+                                text: "find"
+                                onClicked:
+                                {
+                                    mySearchModel.search(findText.text)
+                                    console.log(findText.text)
+                                }
+                            }
+                        }
+                    }
 
                 }
 

@@ -1,7 +1,99 @@
+
 {
-    "employees":[
-    {"firstName":"John", "lastName":"Doe"},
-    {"firstName":"Anna", "lastName":"Smith"},
-    {"firstName":"Peter","lastName":"Jones"}
-]
+    "Starter":
+        [
+
+        { "id":"S01", "item": "ice","price": "96" },
+        { "id":"S02", "item": "mob","price": "56" },
+        { "id":"S03", "item": "lappy","price": "23" },
+        { "id":"S04", "item": "button","price": "36" },
+        { "id":"S05", "item": "letter","price": "12" },
+        { "id":"S06", "item": "fan","price": "02" },
+        { "id":"S07", "item": "ac","price": "11" },
+        { "id":"S08", "item": "cooler","price": "65" },
+        { "id":"S09", "item": "cover","price": "120" },
+        { "id":"S10", "item": "bed","price": "25" },
+        { "id":"S11", "item": "bag","price": "76" },
+        { "id":"S12", "item": "wire","price": "26" },
+        { "id":"S13", "item": "adapter","price": "32" },
+        { "id":"S14", "item": "tablet","price": "76" },
+        { "id":"S15", "item": "hp","price": "32" },
+        { "id":"S16", "item": "dell","price": "25" },
+        { "id":"S17", "item": "lenvo","price": "37" },
+        { "id":"S18", "item": "apple","price": "39" },
+        { "id":"S19", "item": "word","price": "49" },
+        { "id":"S20", "item": "sfood","price": "76" }
+
+    ],
+
+
+    "MainCourse":
+        [
+
+        { "id":"MN01", "item": "ice","price": "96" },
+        { "id":"MN02", "item": "mob","price": "56" },
+        { "id":"MN03", "item": "lappy","price": "23" },
+        { "id":"MN04", "item": "button","price": "36" },
+        { "id":"MN05", "item": "letter","price": "12" },
+        { "id":"MN06", "item": "fan","price": "02" },
+        { "id":"MN07", "item": "ac","price": "11" },
+        { "id":"MN08", "item": "cooler","price": "65" },
+        { "id":"MN09", "item": "cover","price": "120" },
+        { "id":"MN10", "item": "bed","price": "25" },
+        { "id":"MN11", "item": "bag","price": "76" },
+        { "id":"MN12", "item": "wire","price": "26" },
+        { "id":"MN13", "item": "adapter","price": "32" },
+        { "id":"MN14", "item": "tablet","price": "76" },
+        { "id":"MN15", "item": "hp","price": "32" },
+        { "id":"MN16", "item": "dell","price": "25" },
+        { "id":"MN17", "item": "lenvo","price": "37" },
+        { "id":"MN18", "item": "apple","price": "39" },
+        { "id":"MN19", "item": "word","price": "49" },
+        { "id":"MN20", "item": "sfood","price": "76" }
+
+    ],
+
+
+    "Desert":
+        [
+
+        { "id":"D01", "item": "ice","price": "96" },
+        { "id":"D02", "item": "mob","price": "56" },
+        { "id":"D03", "item": "lappy","price": "23" },
+        { "id":"D04", "item": "button","price": "36" },
+        { "id":"D05", "item": "letter","price": "12" },
+        { "id":"D06", "item": "fan","price": "02" },
+        { "id":"D07", "item": "ac","price": "11" },
+        { "id":"D08", "item": "cooler","price": "65" },
+        { "id":"D09", "item": "cover","price": "120" },
+        { "id":"D0", "item": "bed","price": "25" },
+        { "id":"D11", "item": "bag","price": "76" },
+        { "id":"D12", "item": "wire","price": "26" },
+        { "id":"D13", "item": "adapter","price": "32" },
+        { "id":"D14", "item": "tablet","price": "76" },
+        { "id":"D15", "item": "hp","price": "32" },
+        { "id":"D16", "item": "dell","price": "25" },
+        { "id":"D17", "item": "lenvo","price": "37" },
+        { "id":"D18", "item": "apple","price": "39" },
+        { "id":"D19", "item": "word","price": "49" },
+        { "id":"D20", "item": "sfood","price": "76" }
+
+    ]
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

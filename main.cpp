@@ -10,6 +10,7 @@
 #include "checkout.h"
 #include "desert.h"
 #include "maincourse.h"
+#include "search.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,10 @@ int main(int argc, char *argv[])
 
     MainCourseModel mcModel;
 
+    SearchModel mySearchModel;
+
+
+
 
     QFile file("/home/sandeep/FoodApp/menu.json");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -36,68 +41,116 @@ int main(int argc, char *argv[])
     QJsonDocument document = QJsonDocument::fromJson(jsonData);
 
     QJsonObject object = document.object();
-    QJsonValue value = object.value("employees");
-    QJsonArray arrayOUT=value.toArray();
 
-    QJsonObject arrayIn;
-    QJsonValue value2;
+    QJsonValue tempID;
+    QJsonValue tempItem;
+    QJsonValue tempPrice;
+    bool iFlag=false;
+    int i=0;
 
-    for(int i=0;i<5;i++)
+    /*Reading Starter Data*/
+    QJsonValue starterObject = object.value("Desert");
+    QJsonArray starterArray=starterObject.toArray();
+
+    QJsonObject starterValue;
+
+
+
+    while (iFlag!=true)
     {
 
-        arrayIn=arrayOUT.at(i).toObject();
-        value2=arrayIn.value("firstName");
-        qWarning()<<value2;
+        starterValue=starterArray.at(i).toObject();
+        tempID=starterValue.value("id");
+        tempItem=starterValue.value("item");
+        tempPrice=starterValue.value("price");
+        if(tempID.isUndefined()||tempItem.isUndefined()||tempPrice.isUndefined())
+        {
+            iFlag=true;
+            qWarning()<<"data Over";
+
+        }
+        else {
+            qWarning()<<tempID.toString()<<"  "<<tempItem.toString()<<"  "<<tempPrice.toString();
+            stModel.addStarterItem(Starter(tempID.toString(),tempItem.toString(), tempPrice.toString()));
+            i++;
+        }
+
+
     }
+    /*End of reading Starter Data*/
 
 
 
+    /*Reading MainCourse Data*/
+
+    QJsonValue mainCourseObject = object.value("Desert");
+    QJsonArray mainCourseArray=mainCourseObject.toArray();
+
+    QJsonObject mainCourseValue;
+
+    iFlag=false;
+    i=0;
+
+    while (iFlag!=true)
+    {
+
+        mainCourseValue=mainCourseArray.at(i).toObject();
+        tempID=mainCourseValue.value("id");
+        tempItem=mainCourseValue.value("item");
+        tempPrice=mainCourseValue.value("price");
+        if(tempID.isUndefined()||tempItem.isUndefined()||tempPrice.isUndefined())
+        {
+            iFlag=true;
+            qWarning()<<"data Over";
+
+        }
+        else {
+            qWarning()<<tempID.toString()<<"  "<<tempItem.toString()<<"  "<<tempPrice.toString();
+            mcModel.addMainCourseItem(MainCourse(tempItem.toString(), tempPrice.toString()));
+            i++;
+        }
+
+
+    }
+    /*End of reading MainCourse Data*/
 
 
 
+    /*Reading Desert Data*/
+
+    QJsonValue desertObject = object.value("Desert");
+    QJsonArray desertArray=mainCourseObject.toArray();
+
+    QJsonObject desertValue;
+
+    iFlag=false;
+    i=0;
+
+    while (iFlag!=true)
+    {
+
+        desertValue=desertArray.at(i).toObject();
+        tempID=desertValue.value("id");
+        tempItem=desertValue.value("item");
+        tempPrice=desertValue.value("price");
+        if(tempID.isUndefined()||tempItem.isUndefined()||tempPrice.isUndefined())
+        {
+            iFlag=true;
+            qWarning()<<"data Over";
+
+        }
+        else {
+            qWarning()<<tempID.toString()<<"  "<<tempItem.toString()<<"  "<<tempPrice.toString();
+            desModel.addDesertItem(Desert(tempItem.toString(), tempPrice.toString()));
+            i++;
+        }
 
 
-
-    //    foreach (const QJsonValue & v, array)
-    //        qWarning() << v.toObject().value("item") <<"i am run";
-
+    }
+    /*End of reading desert Data*/
 
 
-
-
-
-    //    QJsonArray jarray = rawJson.array();
-    //    //QJsonObject sett2 = rawJson.object();
-    //    //QJsonValue value = jarray.
-    //    qWarning() << jarray;
-
-
-
-
-
-    //    stModel.addStarterItem(Starter("01","Fried Chicken", "26"));
-    //    stModel.addStarterItem(Starter("01","Rost Chicken", "28"));
-    //    stModel.addStarterItem(Starter("01","Shake", "23"));
-    //    stModel.addStarterItem(Starter("01","Tmt", "52"));
-    //    stModel.addStarterItem(Starter("01","Fr Chk", "26"));
-    //    stModel.addStarterItem(Starter("01","Rost", "28"));
-    //    stModel.addStarterItem(Starter("01","Shake", "23"));
-    //    stModel.addStarterItem(Starter("01","Tmt", "52"));
-    //    stModel.addStarterItem(Starter("01","Fr Chk", "26"));
-    //    stModel.addStarterItem(Starter("01","Rost", "28"));
-    //    stModel.addStarterItem(Starter("01","Shake", "23"));
-    //    stModel.addStarterItem(Starter("01","Tmt", "52"));
-
-    //    desModel.addDesertItem(Desert("desert Item","100"));
-    //    desModel.addDesertItem(Desert("desert Item","100"));
-
-
-    //    mcModel.addMainCourseItem(MainCourse("main co","55"));
-    //    mcModel.addMainCourseItem(MainCourse("main co","55"));
-
-
-
-    //chkModel.addRawItem("sandeep", 20);
+  qWarning()<<"testing"<<stModel.rowCount()<<" search = "<<mySearchModel.search("it");
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
@@ -106,6 +159,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("chkModel",&chkModel);
     engine.rootContext()->setContextProperty("desertModel",&desModel);
     engine.rootContext()->setContextProperty("mainCourseModel",&mcModel);
+    engine.rootContext()->setContextProperty("mySearchModel",&mySearchModel);
 
 
     return app.exec();

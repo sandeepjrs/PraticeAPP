@@ -7,5 +7,6 @@
         <file>CheckoutPage.qml</file>
         <file>DesertPage.qml</file>
         <file>MainCoursePage.qml</file>
+        <file>SearchPage.qml</file>
     </qresource>
 </RCC>

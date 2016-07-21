@@ -51,7 +51,7 @@ public:
     Q_INVOKABLE int getTotalCost();
     Q_INVOKABLE bool removeData(int index);
     Q_INVOKABLE int getAmount(int i);
-     QString getItem(int i);
+    QString getItem(int i);
     int searchItemGetQuantity(QString item);
 
 
