@@ -8,8 +8,8 @@ import QtQuick 2.0
 Item {
 
 
-    property real search_height :80
-    property real search_width :400
+    property real search_height :Screen.height
+    property real search_width :Screen.width
     property real search_index: 3
 
     property real fontSize: 55
@@ -30,11 +30,10 @@ Item {
 
             Rectangle
             {
-                id : rect1
-                height: search_height
-                width: search_width+50
+                id : idSearchIdRect
+                height: search_height-search_height*.90
+                width: search_width-search_width*.80
                 color: "lightgrey"
-
 
 
                 Text
@@ -42,25 +41,22 @@ Item {
 
                     id :text1
                     text : "  "+searchId
-                    //anchors.left: rect1.right
-
                     font.pixelSize :fontSize
-                    font.family: "Freedom"
+                    anchors.centerIn: parent
 
-                    //onTextChanged:{ text1.text=  index+1+". "+ addDot(searchItem) +"Rs "+searchAmount}
                 }
             }
             Rectangle
             {
-                id : rect3
-                height: search_height
-                width: search_width-search_width*.5
+                id : idSearchItemRect
+                height: search_height-search_height*.90
+                width: search_width-search_width*.53
                 color: "lightgrey"
 
 
                 Row
                 {
-                    Text { font.pointSize: 30; text: searchItem }
+                    Text { font.pixelSize :fontSize; text: searchItem }
 
                     anchors.centerIn: parent
                 }
@@ -68,9 +64,9 @@ Item {
 
             Rectangle
             {
-                id : rect2
-                height: search_height
-                width: search_width
+                id : idSearchPriceRect
+                height: search_height-search_height*.90
+                width: search_width-search_width*.80
                 color: "lightgrey"
                 Text
                 {
@@ -90,8 +86,8 @@ Item {
             Rectangle
             {
                 id : delRect
-                height: search_height
-                width: search_height
+                height: search_height-search_height*.90
+                width: search_width-search_width*.90
                 //radius: 32/2
                 border.color: "green"
                 border.width: 7
@@ -133,10 +129,10 @@ Item {
         anchors.fill: parent
         model: mySearchModel
         delegate: mysearchDeligate
-        spacing: 10
 
-        anchors.leftMargin: 10
-        anchors.bottomMargin: 60
+
+
+
 
 
         add: Transition {

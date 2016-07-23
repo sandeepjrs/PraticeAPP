@@ -8,9 +8,9 @@ Item
 {
     property real mainCourse_hight : Screen.height
     property real mainCourse_width : Screen.width
-    property real mainCourse_colum: 5
-    property real mainCourse_row: 3
-    property real marginBetweenEachCell: 4
+    property real mainCourse_colum: mainCourse_hight>mainCourse_width ? 2 : 5
+    property real mainCourse_row: mainCourse_hight>mainCourse_width ? 5 : 3
+    property real marginBetweenEachCell: 0
     property real widthForOneCell: (mainCourse_width- (marginBetweenEachCell*mainCourse_colum))/mainCourse_colum
     property real heightForOneCell : (mainCourse_hight-marginBetweenEachCell*mainCourse_row)/mainCourse_row
 
@@ -32,31 +32,34 @@ Item
 
             border.color: "white"
             border.width: 3
-            color: "red"
-            Text {
+            color: "yellow"
+            Button {
                 id: tex11
                 text: mainCourseItem + "  "+ mainCoursePrice
-                anchors.centerIn: parent
-                font.pixelSize: 30
-
-
-            }
-            MouseArea
-            {
                 anchors.fill: parent
-                onPressed:  {
-
-                    parent.color ="blue"
-                }
-
-                onReleased:  {
-                    parent.color ="red"
-                    mc_Clicked(MainCourseItem,MainCoursePrice)
-
+                //font.pixelSize: 30
+                onClicked: {
+                     mc_Clicked(mainCourseItem,mainCoursePrice)
                 }
 
 
             }
+//            MouseArea
+//            {
+//                anchors.fill: parent
+//                onPressed:  {
+
+//                    parent.color ="blue"
+//                }
+
+//                onReleased:  {
+//                    parent.color ="red"
+//                    mc_Clicked(MainCourseItem,MainCoursePrice)
+
+//                }
+
+
+//            }
 
 
 

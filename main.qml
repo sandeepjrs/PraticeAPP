@@ -1,337 +1,196 @@
-import QtQuick 2.4
-import QtQuick.Window 2.2
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.4
-import QtQuick 2.0
-import QtQuick 2.3
-import QtQuick.Window 2.1
-//import and
+import QtQuick 2.7
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 
+ApplicationWindow {
 
-import "./"
-
-Window {
-    id: root
     visible: true
-    property real h_index
-    property real quantity
+    width: 640
+    height: 480
+    title: qsTr("Hello World")
+
+
+    property real homeState
 
 
 
-    Rectangle{
+    SwipeView {
+        id: swipeView
         anchors.fill: parent
+        currentIndex: tabBar.currentIndex
 
 
-        TabView {
-            id: tabView
+        Page
+        {
 
-            anchors.fill: parent
-
-
-
-            Tab {
-                title: "Home"
-                id: homeTab
-
-                Rectangle
-                {
-                    anchors.fill: parent
-
-                    id: rootTab1
-
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        state: "HOME"
-                        id: s_home
-                        visible: true
-
-
-                        HomePage
+            Rectangle{
+                id: idHomePage
+                anchors.fill : parent
+                visible: true
+                HomePage{
+                    onHomeClicked:{
+                        homeState=homeIndex
+                        switch(homeIndex)
                         {
+                        case 0 :{
 
-                            home_hight: root.height
-                            onHomeClicked:
-                            {
-                                switch(homeIndex)
-                                {
-                                case 0 :
-                                {
+                            break
+                        }
 
-                                    break
-                                }
+                        case 1 :{
+                            idHomePage.visible=false
+                            idStraterPage.visible=true
+                            idButtonHomePage.text="BACK"
 
-                                case 1 :
-                                {
-                                    s_home.visible=false
-                                    s_starter.visible=true
-                                    homeTab.title="Starter"
+                            break
+                        }
 
+                        case 2 : {
+                            idHomePage.visible=false
+                            idMainCourse.visible=true
+                            idButtonHomePage.text="BACK"
 
-                                    break
-                                }
+                            break
+                        }
+                        case 3 : {
+                            idHomePage.visible=false
+                            idDesertPage.visible=true
+                            idButtonHomePage.text="BACK"
 
-                                case 2 :
-                                {
-                                    s_home.visible=false
-                                    mc_mainCourse.visible=true
-                                    homeTab.title="Main Course"
-                                    break
-                                }
-                                case 3 :
-                                {
-                                    s_home.visible=false
-                                    d_desert.visible=true
-                                    homeTab.title="Desert"
-                                    break
-                                }
-                                default:
-                                {
-                                    console.log("def")
-                                }
-                                }
-
-                                rootTab1.state="HOME"
-
-                            }
+                            break
+                        }
 
                         }
+
+
+
+                    }
+                }
+            }
+
+            Rectangle{
+                id:idStraterPage
+                anchors.fill : parent
+                visible: false
+                StarterPage{
+                    onS_Clicked:
+                    {
+                        chkModel.addRawItem(itm,Number(prc))
+                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
 
                     }
 
+                }
+            }
 
+            Rectangle{
+                id:idMainCourse
+                anchors.fill : parent
+                visible: false
+                MainCoursePage{
 
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        state: "STARTER"
-                        visible: false
-                        id: s_starter
-
-                        StarterPage
-                        {
-
-
-                            starter_hight: root.height
-                            anchors.fill: parent
-
-                            onS_Clicked:
-                            {
-                                chkModel.addRawItem(itm,Number(prc))
-                                chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-
-                            }
-
-                        }
+                    onMc_Clicked: {
+                        chkModel.addRawItem(itm,Number(prc))
+                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
                     }
+                }
+            }
 
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        state: "MAINCOURSE"
-                        visible: false
-
-                        id: mc_mainCourse
-                        MainCoursePage
-                        {
-                            onMc_Clicked:
-                            {
-                                chkModel.addRawItem(itm,Number(prc))
-                                chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-                            }
-
-
-                        }
+            Rectangle{
+                id:idDesertPage
+                anchors.fill : parent
+                visible: false
+                DesertPage{
+                    onD_Clicked: {
+                        chkModel.addRawItem(itm,Number(prc))
+                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
                     }
-
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        state: "DESERT"
-                        visible: false
-                        id: d_desert
-                        DesertPage
-                        {
-                            onD_Clicked:
-                            {
-                                chkModel.addRawItem(itm,Number(prc))
-                                chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-                            }
-
-                        }
-                    }
-
-
-
-
-
-                    Rectangle
-                    {
-                        z:1
-                        id:backButton
-                        height: 100
-                        width: 100
-                        color: "blue"
-                        border.color: "yellow"
-                        border.width: 5
-                        visible: false
-
-
-
-                        MouseArea
-                        {
-                            id: dragArea
-                            anchors.fill: parent
-                            onClicked:
-                            {
-                                s_home.visible=true
-                                s_starter.visible=false
-                                d_desert.visible=false
-                                mc_mainCourse.visible=false
-                                homeTab.title="Home"
-                                rootTab1.state="BACK"
-
-                            }
-                            drag.target: rootTab1
-
-
-                        }
-                    }
-
-                    states:
-                        [
-                        State
-                        {
-                            name : "HOME"
-                            PropertyChanges { target: backButton; visible:true}
-                        },
-
-                        State
-                        {
-                            name : "BACK"
-                            PropertyChanges { target: backButton; visible:false}
-                        },
-
-                        State
-                        {
-                            name : "MAINCOURSE"
-                            PropertyChanges { target: backButton; visible:false}
-                        },
-
-                        State
-                        {
-                            name : "DESERT"
-                            PropertyChanges { target: backButton; visible:false}
-                        }
-
-                    ]
 
                 }
             }
 
 
+        }
 
 
+        Page {
+            Rectangle{
+                id:idCheckOutPage
+                anchors.fill : parent
+                visible: true
+                CheckoutPage{
+                    onUpdatedCheckoutCost:
+                    {
+                        idButtonCheckoutPage.text = "Checkout ("+chkModel.getTotalCost()+")"
 
+                    }
 
-
-            Tab {
-                title: "Search"
+                }
+            }
+        }
+        Page {
+            Rectangle
+            {
                 id: desTab
-                Rectangle
-                {
 
+                anchors.fill: parent
+                Column{
 
-                    anchors.fill: parent
-                    Column{
-
-                        Rectangle
-                        {
-                            height: desTab.height- desTab.height*0.12
-                            width: desTab.width
-
-
-                            SearchPage
-                            {
-                                 onAddFromSearch:
-                                 {
-                                     chkModel.addRawItem(itm,Number(prc))
-                                     chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-                                 }
-                            }
-                        }
-
-                        Rectangle
-                        {
-                            border.color: black
-                            border.width: 2
-                            height: desTab.height- desTab.height*0.88
-                            width: desTab.width
-                            color: "yellow"
-                            id: rowRect
-                            z:1
-
-                            Row
-                            {
-                                spacing: 0
-
-                                TextEdit
-                                {
-                                    id: findText
-                                    height: rowRect.height
-                                    width: rowRect.width -rowRect.width*.25
-                                    anchors.leftMargin: rowRect.width -rowRect.width*.60
-                                    font.pixelSize: 50
-
-
-                                }
-                                Button
-                                {
-                                    height: rowRect.height
-                                    width: rowRect.width -rowRect.width*.75
-                                    text: "find"
-                                    z:1
-                                    onClicked:
-                                    {
-                                        mySearchModel.removeAllData()
-                                        mySearchModel.search(findText.text)
-                                        //                                    console.log(findText.text)
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-
-
-
-            }
-            Tab {
-                id:chkTab
-                title: "Checkout ("+chkModel.getTotalCost()+")"
-
-                Rectangle
-                {
-                    id: chkRect
-                    anchors.fill: parent
-
-
-                    CheckoutPage
-
+                    Rectangle
                     {
-                        onUpdatedCheckoutCost:
-                        {
-                            chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
-                            console.log(updatedCheckoutprice)
-                        }
+                        height: desTab.height- desTab.height*0.12
+                        width: desTab.width
 
+
+                        SearchPage
+                        {
+                            onAddFromSearch:
+                            {
+                                chkModel.addRawItem(itm,Number(prc))
+                                idButtonCheckoutPage.text = "Checkout ("+chkModel.getTotalCost()+")"
+                            }
+                        }
                     }
 
+                    Rectangle
+                    {
+                        border.color: black
+                        border.width: 2
+                        height: desTab.height- desTab.height*0.88
+                        width: desTab.width
+                        color: "yellow"
+                        id: rowRect
+                        z:1
+
+                        Row
+                        {
+                            spacing: 0
+
+                            TextEdit
+                            {
+                                id: findText
+                                height: rowRect.height
+                                width: rowRect.width -rowRect.width*.25
+                                anchors.leftMargin: rowRect.width -rowRect.width*.60
+                                font.pixelSize: 50
 
 
+                            }
+                            Button
+                            {
+                                height: rowRect.height
+                                width: rowRect.width -rowRect.width*.75
+                                text: "find"
+                                z:1
+                                onClicked:
+                                {
+                                    mySearchModel.removeAllData()
+                                    mySearchModel.search(findText.text)
+                                    //                                    console.log(findText.text)
+                                }
+                            }
+                        }
+                    }
 
                 }
 
@@ -339,6 +198,56 @@ Window {
 
         }
 
-    }
-}
 
+
+    }
+
+
+
+    footer: TabBar {
+        id: tabBar
+        currentIndex: swipeView.currentIndex
+        TabButton {
+            id:idButtonHomePage
+            text: qsTr("Home")
+            onClicked: {
+                if(homeState==0){
+
+                }
+                else if(homeState==1){
+
+                    idButtonHomePage.text="Home"
+                    idHomePage.visible=true
+                    idStraterPage.visible=false
+                }
+                else if(homeState==2){
+                    idButtonHomePage.text="Home"
+                    idHomePage.visible=true
+                    idMainCourse.visible=false
+
+                }
+                else if(homeState==3){
+                    idButtonHomePage.text="Home"
+                    idHomePage.visible=true
+                    idDesertPage.visible=false
+
+                }
+            }
+
+
+        }
+        TabButton {
+            id: idButtonCheckoutPage
+            text: qsTr("CheckOut(0)")
+        }
+        TabButton {
+            text: qsTr("Search")
+        }
+    }
+
+
+}
+//    }
+
+
+//}

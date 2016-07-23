@@ -8,11 +8,11 @@ import QtQuick 2.0
 Item {
 
 
-    property real chk_height :80
-    property real chk_width :400
+    property real chk_height :Screen.height
+    property real chk_width :Screen.width
     property real chk_index: 3
 
-    property real fontSize: 55
+    property real fontSize: 30
     anchors.fill: parent
     id:root
     signal updatedCheckoutCost(int updatedCheckoutprice)
@@ -20,56 +20,46 @@ Item {
     Component {
         id: myChkDeligate
 
-
         Row
         {
             spacing: 10
-
-
             Rectangle
             {
-                id : rect1
-                height: chk_height
-                width: chk_width+50
+                id : idChkItemRect
+                height: chk_height-chk_height*0.9
+                width: chk_width-chk_width*0.50
                 color: "lightgrey"
-
-
-
                 Text
                 {
-
                     id :text1
-                    text : "  "+chkItem
-                    //anchors.left: rect1.right
-                    anchors.verticalCenter: rect1
+                    text : "IDXXX"+"  "+chkItem
+                    anchors.verticalCenter: parent
                     font.pixelSize :fontSize
-                    font.family: "Freedom"
 
-                    //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
                 }
             }
             Rectangle
             {
-                id : rect3
-                height: chk_height
-                width: chk_width-chk_width*.5
+                id : idChkPriceRect
+                height: chk_height-chk_height*0.9
+                width: chk_width-chk_width*.80
                 color: "lightgrey"
 
 
                 Row
                 {
-                    Text { font.pointSize: 30; text: chkSingleItemPrice }
-                    Text { font.pointSize: 30; text: " x " }
-                    Text { font.pointSize: 30; text: chkQuantity}
+                    Text {  font.pixelSize: fontSize; text: chkSingleItemPrice }
+                    Text {  font.pixelSize: fontSize; text: " x " }
+                    Text {  font.pixelSize: fontSize; text: chkQuantity}
                     anchors.centerIn: parent
                 }
             }
 
             Rectangle
             {
-                id : rect2
-                height: chk_height
-                width: chk_width
+                id : idChkAmountRect
+                height: chk_height-chk_height*0.9
+                width: chk_width-chk_width*.85
                 color: "lightgrey"
                 Text
                 {
@@ -78,7 +68,7 @@ Item {
 
                     text : "Rs. "+chkAmount
                     anchors.centerIn: parent
-                    anchors.verticalCenter: rect2
+                    anchors.verticalCenter: parent
                     font.pixelSize :fontSize
                     font.family: "Freedom"
 
@@ -90,8 +80,8 @@ Item {
             Rectangle
             {
                 id : delRect
-                height: chk_height
-                width: chk_height
+                height: chk_height-chk_height*0.9
+                width: chk_width-chk_width*.90
                 //radius: 32/2
                 border.color: "red"
                 border.width: 7
@@ -138,13 +128,13 @@ Item {
         delegate: myChkDeligate
         spacing: 10
 
-        anchors.leftMargin: 10
+        anchors.leftMargin: chk_width-chk_width*.99
 
 
-//        add: Transition {
-//            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
-//            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
-//        }
+        //        add: Transition {
+        //            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
+        //            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
+        //        }
 
         displaced: Transition {
             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }

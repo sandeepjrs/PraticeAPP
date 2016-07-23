@@ -7,13 +7,13 @@ import QtQuick 2.7
 
 Item
 {
-    property real home_hight
-    property real home_width :Screen.width
+    property real home_hight :parent.height
+    property real home_width :parent.width
     property real home_index: 2
 
     property real home_colum: 2
     property real home_row: 2
-    property real marginBetweenEachCell: 5
+    property real marginBetweenEachCell: 0
     property real widthForOneCell: (home_width- (marginBetweenEachCell*home_colum))/home_colum
     property real heightForOneCell : (home_hight-marginBetweenEachCell*home_row)/home_row
     anchors.fill: parent
@@ -54,26 +54,16 @@ Item
             //Layout.alignment: Qt.AlignCenter
             color: "red"
 
-            Text {
+            Button {
                 id: tex11
                 text: name
-                anchors.centerIn: parent
-                font.pixelSize: Screen.pixelDensity*5
-
-
-            }
-            MouseArea
-            {
                 anchors.fill: parent
-                onPressed:  {
-
-                    parent.color ="blue"
-                }
-
-                onReleased:  {
-                    parent.color ="red"
+                //font.pixelSize: Screen.pixelDensity*5
+                onClicked:
+                {
                     homeClicked(index)
                 }
+
 
             }
 
@@ -92,7 +82,7 @@ Item
         anchors.fill: parent
         model: myModel
         delegate: myDeligate
-        interactive: false
+          //interactive: false
 
     }
 

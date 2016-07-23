@@ -8,9 +8,9 @@ Item
 {
     property real starter_hight : Screen.height
     property real starter_width : Screen.width
-    property real starter_colum: 5
-    property real starter_row: 3
-    property real marginBetweenEachCell: 4
+    property real starter_colum: starter_hight>starter_width ? 2 : 5
+    property real starter_row: starter_hight>starter_width ? 5 : 3
+    property real marginBetweenEachCell: 0
     property real widthForOneCell: (starter_width- (marginBetweenEachCell*starter_colum))/starter_colum
     property real heightForOneCell : (starter_hight-marginBetweenEachCell*starter_row)/starter_row
 
