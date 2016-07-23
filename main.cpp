@@ -29,9 +29,8 @@ int main(int argc, char *argv[])
     SearchModel mySearchModel;
 
 
-
-
     QFile file("/home/sandeep/FoodApp/menu.json");
+    //QFile file("/storage/emulated/legacy/foodAppData/menu.json");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsonData = file.readAll();
     file.close();
@@ -150,7 +149,7 @@ int main(int argc, char *argv[])
     /*End of reading desert Data*/
 
 
-  qWarning()<<"testing"<<stModel.rowCount()<<" search = "<<mySearchModel.search("it");
+    //qWarning()<<"testing"<<stModel.rowCount()<<" search = "<<mySearchModel.search("it");
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

@@ -49,7 +49,9 @@ public:
 
     //public slots:
 
-    Q_INVOKABLE int search(QString item);
+    Q_INVOKABLE void search(QString item);
+    Q_INVOKABLE bool removeAllData();
+
 
 
 

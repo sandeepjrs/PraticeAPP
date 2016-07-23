@@ -35,30 +35,41 @@ Item
 
             border.color: "white"
             border.width: 3
-            color: "red"
-            Text {
-                id: tex11
-                text: stId+" "+stItem + "  "+ stPrice
-                anchors.centerIn: parent
-                font.pixelSize: 30
+            color: "lightgreen"
+//            Text {
+//                id: tex11
+//                text: stId+" "+stItem + "  "+ stPrice
+//                anchors.centerIn: parent
+//                font.pixelSize: 30
 
 
-            }
-            MouseArea
+//            }
+//            MouseArea
+//            {
+//                anchors.fill: parent
+//                onPressed:  {
+
+//                    parent.color ="blue"
+//                }
+
+//                onReleased:  {
+//                    parent.color ="red"
+//                    s_Clicked(stItem,stPrice)
+
+//                }
+
+
+
+//            }
+            Button
             {
-                anchors.fill: parent
-                onPressed:  {
+               text: stId+" "+stItem + "  "+ stPrice
+               anchors.fill: parent
 
-                    parent.color ="blue"
-                }
-
-                onReleased:  {
-                    parent.color ="red"
-                    s_Clicked(stItem,stPrice)
-
-                }
-
-
+               onClicked:
+               {
+                   s_Clicked(stItem,stPrice)
+               }
             }
 
 

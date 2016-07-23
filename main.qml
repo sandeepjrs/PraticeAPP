@@ -134,7 +134,11 @@ Window {
                         id: mc_mainCourse
                         MainCoursePage
                         {
-
+                            onMc_Clicked:
+                            {
+                                chkModel.addRawItem(itm,Number(prc))
+                                chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
+                            }
 
 
                         }
@@ -148,7 +152,11 @@ Window {
                         id: d_desert
                         DesertPage
                         {
-
+                            onD_Clicked:
+                            {
+                                chkModel.addRawItem(itm,Number(prc))
+                                chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
+                            }
 
                         }
                     }
@@ -168,8 +176,11 @@ Window {
                         border.width: 5
                         visible: false
 
+
+
                         MouseArea
                         {
+                            id: dragArea
                             anchors.fill: parent
                             onClicked:
                             {
@@ -181,6 +192,9 @@ Window {
                                 rootTab1.state="BACK"
 
                             }
+                            drag.target: rootTab1
+
+
                         }
                     }
 
@@ -229,37 +243,64 @@ Window {
 
 
                     anchors.fill: parent
+                    Column{
 
-                    Rectangle
-                    {
-                        border.color: black
-                        border.width: 2
-                        height: 50
-                        width: 300
-                        Row
+                        Rectangle
                         {
-                            spacing: 10
-                            TextEdit
-                            {
-                                id: findText
-                                height: 50
-                                width: 150
-                                text: "hello"
-                                font.pixelSize: 50
+                            height: desTab.height- desTab.height*0.12
+                            width: desTab.width
 
-                            }
-                            Button
+
+                            SearchPage
                             {
-                                height: 50
-                                width: 150
-                                text: "find"
-                                onClicked:
+                                 onAddFromSearch:
+                                 {
+                                     chkModel.addRawItem(itm,Number(prc))
+                                     chkTab.title = "Checkout ("+chkModel.getTotalCost()+")"
+                                 }
+                            }
+                        }
+
+                        Rectangle
+                        {
+                            border.color: black
+                            border.width: 2
+                            height: desTab.height- desTab.height*0.88
+                            width: desTab.width
+                            color: "yellow"
+                            id: rowRect
+                            z:1
+
+                            Row
+                            {
+                                spacing: 0
+
+                                TextEdit
                                 {
-                                    mySearchModel.search(findText.text)
-                                    console.log(findText.text)
+                                    id: findText
+                                    height: rowRect.height
+                                    width: rowRect.width -rowRect.width*.25
+                                    anchors.leftMargin: rowRect.width -rowRect.width*.60
+                                    font.pixelSize: 50
+
+
+                                }
+                                Button
+                                {
+                                    height: rowRect.height
+                                    width: rowRect.width -rowRect.width*.75
+                                    text: "find"
+                                    z:1
+                                    onClicked:
+                                    {
+                                        mySearchModel.removeAllData()
+                                        mySearchModel.search(findText.text)
+                                        //                                    console.log(findText.text)
+                                    }
                                 }
                             }
                         }
+
                     }
 
                 }

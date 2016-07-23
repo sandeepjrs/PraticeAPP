@@ -60,23 +60,45 @@ QVariant SearchModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-int SearchModel::search(QString item)
+
+void SearchModel::search(QString item)
 {
-    StarterModel strModel;
-    for (int i = 0; i < strModel.rowCount(); i++)
+    if(item=="")
     {
-        if(strModel.getStarterList().at(i).get_stItem().startsWith(item))
+
+    }
+    else
+    {
+        StarterModel strModel;
+        for (int i = 0; i < strModel.rowCount(); i++)
         {
-            qWarning()<<"yes I am present  "+strModel.getStarterList().at(i).get_stItem();
-            addSearchItem(Search(strModel.getStarterList().at(i).get_stId(),
-                                 strModel.getStarterList().at(i).get_stItem(),
-                                 strModel.getStarterList().at(i).get_stPrice()));
+            if(strModel.getStarterList().at(i).get_stItem().startsWith(item,Qt::CaseInsensitive))
+            {
+                qWarning()<<"yes I am present  "+strModel.getStarterList().at(i).get_stItem();
+                addSearchItem(Search(strModel.getStarterList().at(i).get_stId(),
+                                     strModel.getStarterList().at(i).get_stItem(),
+                                     strModel.getStarterList().at(i).get_stPrice()));
+            }
         }
     }
 
-    qWarning()<<"searching"<<strModel.rowCount();
 
 }
+
+
+bool SearchModel::removeAllData()
+{
+    for(int index=0;index<m_SearchData.count();index++)
+    {
+        beginRemoveRows(QModelIndex(),index,index);
+        m_SearchData.removeAt(index);
+        endRemoveRows();
+    }
+    return 0;
+
+}
+
+
 
 QHash<int, QByteArray> SearchModel::roleNames() const
 {

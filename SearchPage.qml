@@ -16,6 +16,8 @@ Item {
     anchors.fill: parent
     id:root
 
+    signal addFromSearch(string itm,string prc)
+
 
     Component {
         id: mysearchDeligate
@@ -41,7 +43,7 @@ Item {
                     id :text1
                     text : "  "+searchId
                     //anchors.left: rect1.right
-                    anchors.verticalCenter: rect1
+
                     font.pixelSize :fontSize
                     font.family: "Freedom"
 
@@ -110,9 +112,7 @@ Item {
                     onClicked:
                     {
                         console.log("clicked ADD")
-
-
-
+                         addFromSearch(searchItem,searchPrice)
 
                     }
                 }
@@ -136,6 +136,7 @@ Item {
         spacing: 10
 
         anchors.leftMargin: 10
+        anchors.bottomMargin: 60
 
 
         add: Transition {
@@ -143,9 +144,9 @@ Item {
             NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
         }
 
-        displaced: Transition {
-            NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
-        }
+//        displaced: Transition {
+//            NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
+//        }
 
 
 

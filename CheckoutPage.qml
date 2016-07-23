@@ -141,10 +141,10 @@ Item {
         anchors.leftMargin: 10
 
 
-        add: Transition {
-            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
-            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
-        }
+//        add: Transition {
+//            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
+//            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
+//        }
 
         displaced: Transition {
             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
