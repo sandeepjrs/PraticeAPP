@@ -82,6 +82,8 @@ Item
 
         anchors.fill: parent
         anchors.leftMargin: marginBetweenEachCell*2.5
+        anchors.bottomMargin: starter_hight-starter_hight*.82
+        //anchors.topMargin:  starter_hight-starter_hight*.85
 
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: stModel

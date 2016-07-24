@@ -8,5 +8,6 @@
         <file>DesertPage.qml</file>
         <file>MainCoursePage.qml</file>
         <file>SearchPage.qml</file>
+        <file>NewOrderDiaglog.qml</file>
     </qresource>
 </RCC>

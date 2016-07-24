@@ -71,7 +71,7 @@ Item
 
         anchors.fill: parent
         anchors.leftMargin: marginBetweenEachCell*2.5
-
+        anchors.bottomMargin: mainCourse_hight-mainCourse_hight*.82
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: mainCourseModel
 

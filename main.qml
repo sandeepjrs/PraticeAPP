@@ -1,23 +1,105 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
+import QtQuick.Window 2.2
+
 
 ApplicationWindow {
 
+    id:root
     visible: true
-    width: 640
-    height: 480
+    width: Screen.width
+    height: Screen.height
     title: qsTr("Hello World")
 
 
     property real homeState
 
+    Rectangle
+    {
+        id:idBanner
+        anchors.top: parent.top
+        height: root.height-root.height*.85
+        width: root.width
+        color: "#1B7652"
+        z:2
+
+        Row{
+            spacing: 2
+
+            Rectangle{
+                height: idBanner.height
+                width: idBanner.width/4
+
+                color: idBanner.color
+                Text {  id: idBannerBack;text: qsTr("<"); font.pixelSize: 80; color: "white"
+                    anchors.centerIn: parent; visible: false;font.bold: false}
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        if(homeState==0){
+
+                        }
+                        else if(homeState==1){
+
+                            idBannermid.text="Fooddiies"
+                            idHomePage.visible=true
+                            idStraterPage.visible=false
+                            idBannerBack.visible=false
+                        }
+                        else if(homeState==2){
+                            idBannermid.text="Fooddiies"
+                            idHomePage.visible=true
+                            idMainCourse.visible=false
+                            idBannerBack.visible=false
+
+                        }
+                        else if(homeState==3){
+                            idBannermid.text="Fooddiies"
+                            idHomePage.visible=true
+                            idDesertPage.visible=false
+                            idBannerBack.visible=false
+
+                        }
+
+                    }
+                }
+            }
+            Rectangle{
+                height: idBanner.height
+                width: idBanner.width/2
+
+                color: idBanner.color
+                Text {   id: idBannermid; text: qsTr("Fooddiies");font.pixelSize: 50; color: "white";anchors.centerIn: parent
+                    font.bold: true}
+            }
+            Rectangle{
+                height: idBanner.height
+                width: idBanner.width/4
+
+                color: idBanner.color
+                Text {   id: idBannerLast; text: qsTr("Fooddiies");font.pixelSize: 25; color: "white" ;anchors.centerIn: parent
+                    font.bold: true;visible: false}
+            }
+
+        }
+
+
+    }
+
+
 
 
     SwipeView {
         id: swipeView
-        anchors.fill: parent
+        anchors.top: idBanner.bottom
         currentIndex: tabBar.currentIndex
+        height: root.height-root.height*.15
+        width: root.width
+
 
 
         Page
@@ -34,13 +116,16 @@ ApplicationWindow {
                         {
                         case 0 :{
 
+
+
                             break
                         }
 
                         case 1 :{
                             idHomePage.visible=false
                             idStraterPage.visible=true
-                            idButtonHomePage.text="BACK"
+                            idBannerBack.visible=true
+                            idBannermid.text="Starters"
 
                             break
                         }
@@ -48,14 +133,16 @@ ApplicationWindow {
                         case 2 : {
                             idHomePage.visible=false
                             idMainCourse.visible=true
-                            idButtonHomePage.text="BACK"
+                            idBannerBack.visible=true
+                            idBannermid.text="MainCourse"
 
                             break
                         }
                         case 3 : {
                             idHomePage.visible=false
                             idDesertPage.visible=true
-                            idButtonHomePage.text="BACK"
+                            idBannerBack.visible=true
+                            idBannermid.text="Deserts"
 
                             break
                         }
@@ -67,6 +154,21 @@ ApplicationWindow {
                     }
                 }
             }
+
+
+            Rectangle{
+                anchors.centerIn: parent
+                NewOrderDiaglog
+                {
+                    id:idNewOrderDiaglog
+                    newOrderVisible: false
+                    onOk: {
+                        idNewOrderDiaglog.newOrderVisible=false
+                    }
+
+                }
+            }
+
 
             Rectangle{
                 id:idStraterPage
@@ -108,6 +210,8 @@ ApplicationWindow {
 
                 }
             }
+
+
 
 
         }
@@ -154,7 +258,7 @@ ApplicationWindow {
 
                     Rectangle
                     {
-                        border.color: black
+                        border.color: "black"
                         border.width: 2
                         height: desTab.height- desTab.height*0.88
                         width: desTab.width
@@ -204,50 +308,33 @@ ApplicationWindow {
 
 
 
-    footer: TabBar {
-        id: tabBar
+
+
+    PageIndicator {
+        count: 3
+        spacing: 30
+
         currentIndex: swipeView.currentIndex
-        TabButton {
-            id:idButtonHomePage
-            text: qsTr("Home")
-            onClicked: {
-                if(homeState==0){
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 40
+        delegate: Rectangle {
+            implicitWidth: 25
+            implicitHeight: 25
 
-                }
-                else if(homeState==1){
+            radius: width
+            color: "black"
 
-                    idButtonHomePage.text="Home"
-                    idHomePage.visible=true
-                    idStraterPage.visible=false
-                }
-                else if(homeState==2){
-                    idButtonHomePage.text="Home"
-                    idHomePage.visible=true
-                    idMainCourse.visible=false
+            opacity: index === swipeView.currentIndex ? 0.95 : pressed ? 0.7 : 0.45
 
-                }
-                else if(homeState==3){
-                    idButtonHomePage.text="Home"
-                    idHomePage.visible=true
-                    idDesertPage.visible=false
-
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: 100
                 }
             }
-
-
-        }
-        TabButton {
-            id: idButtonCheckoutPage
-            text: qsTr("CheckOut(0)")
-        }
-        TabButton {
-            text: qsTr("Search")
         }
     }
 
 
 }
-//    }
 
-
-//}

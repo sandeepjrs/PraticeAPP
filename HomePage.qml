@@ -51,14 +51,14 @@ Item
             width:widthForOneCell
             border.color: "white"
             border.width: 5
-            //Layout.alignment: Qt.AlignCenter
-            color: "red"
+
+            color: "#16CC77"
 
             Button {
                 id: tex11
                 text: name
                 anchors.fill: parent
-                //font.pixelSize: Screen.pixelDensity*5
+
                 onClicked:
                 {
                     homeClicked(index)
@@ -82,7 +82,7 @@ Item
         anchors.fill: parent
         model: myModel
         delegate: myDeligate
-          //interactive: false
+        interactive: false
 
     }
 

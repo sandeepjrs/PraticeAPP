@@ -29,7 +29,8 @@ DISTFILES += \
     android/AndroidManifest.xml \
     android/res/values/libs.xml \
     android/build.gradle \
-    menu.json
+    menu.json \
+    images/icon-left-arrow.png
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

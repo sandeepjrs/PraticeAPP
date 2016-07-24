@@ -71,7 +71,7 @@ Item
 
         anchors.fill: parent
         anchors.leftMargin: marginBetweenEachCell*2.5
-
+        anchors.bottomMargin: desert_hight-desert_hight*.82
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: desertModel
 
