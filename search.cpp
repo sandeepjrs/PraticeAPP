@@ -88,7 +88,7 @@ void SearchModel::search(QString item)
 
 bool SearchModel::removeAllData()
 {
-    for(int index=0;index<m_SearchData.count();index++)
+    for(int index=m_SearchData.count();index>=0;index--)
     {
         beginRemoveRows(QModelIndex(),index,index);
         m_SearchData.removeAt(index);

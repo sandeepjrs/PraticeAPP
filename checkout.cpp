@@ -82,6 +82,16 @@ int CheckoutModel::getAmount(int i)
     return m_amount.at(i).get_Amount();
 }
 
+void CheckoutModel::removeAllData()
+{
+    for(int i=m_amount.count();i>=0;i--){
+        removeData(i);
+    }
+
+
+
+}
+
 QString CheckoutModel::getItem(int i)
 {
     return m_amount.at(i).get_Itemt();

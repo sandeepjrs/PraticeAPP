@@ -6,6 +6,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
 
 
+
 ApplicationWindow {
 
     id:root
@@ -24,6 +25,7 @@ ApplicationWindow {
         height: root.height-root.height*.85
         width: root.width
         color: "#1B7652"
+
         z:2
 
         Row{
@@ -34,7 +36,7 @@ ApplicationWindow {
                 width: idBanner.width/4
 
                 color: idBanner.color
-                Text {  id: idBannerBack;text: qsTr("<"); font.pixelSize: 80; color: "white"
+                Text {  id: idBannerBack;text: qsTr("<"); font.pixelSize: 80; color: "black"
                     anchors.centerIn: parent; visible: false;font.bold: false}
 
                 MouseArea{
@@ -44,26 +46,21 @@ ApplicationWindow {
 
                         }
                         else if(homeState==1){
-
-                            idBannermid.text="Fooddiies"
-                            idHomePage.visible=true
                             idStraterPage.visible=false
-                            idBannerBack.visible=false
+
                         }
                         else if(homeState==2){
-                            idBannermid.text="Fooddiies"
-                            idHomePage.visible=true
                             idMainCourse.visible=false
-                            idBannerBack.visible=false
-
                         }
-                        else if(homeState==3){
-                            idBannermid.text="Fooddiies"
-                            idHomePage.visible=true
+                        else if(homeState==3 ){
                             idDesertPage.visible=false
-                            idBannerBack.visible=false
-
                         }
+
+                        idBannermid.text="Fooddiies"
+                        idHomePage.visible=true
+                        idBannerBack.visible=false
+                        swipeView.currentIndex=0
+                        homeState=4
 
                     }
                 }
@@ -73,7 +70,9 @@ ApplicationWindow {
                 width: idBanner.width/2
 
                 color: idBanner.color
-                Text {   id: idBannermid; text: qsTr("Fooddiies");font.pixelSize: 50; color: "white";anchors.centerIn: parent
+                Text {   id: idBannermid;
+                    text: qsTr("Fooddiies")
+                    font.pixelSize: 50; color: "white";anchors.centerIn: parent
                     font.bold: true}
             }
             Rectangle{
@@ -81,11 +80,13 @@ ApplicationWindow {
                 width: idBanner.width/4
 
                 color: idBanner.color
-                Text {   id: idBannerLast; text: qsTr("Fooddiies");font.pixelSize: 25; color: "white" ;anchors.centerIn: parent
-                    font.bold: true;visible: false}
+                Text {   id: idBannerLast; text:"Rs. "+"0";font.pixelSize: 40; color: "lightgreen" ;anchors.centerIn: parent
+                    font.bold: true;visible: true}
             }
 
         }
+
+
 
 
     }
@@ -99,8 +100,32 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         height: root.height-root.height*.15
         width: root.width
+        onCurrentIndexChanged:
+        {
+            if(homeState==1||homeState==2||homeState==3)
+            {
 
+                swipeView.currentIndex=0
+            }
 
+            else if(swipeView.currentIndex==0){
+                idBannermid.text=qsTr("Fooddiies")
+
+            }
+            else if(swipeView.currentIndex==1){
+                idBannermid.text=qsTr("CheckOut")
+            }
+            else if(swipeView.currentIndex==2){
+                idBannermid.text=qsTr("Search")
+            }
+
+            if(chkModel.getTotalCost()==0){
+                idNoItems.visible=true
+            }
+            else{
+                idNoItems.visible=false
+            }
+        }
 
         Page
         {
@@ -116,7 +141,8 @@ ApplicationWindow {
                         {
                         case 0 :{
 
-
+                            chkModel.removeAllData()
+                            idBannerLast.text = "Rs. "+chkModel.getTotalCost()
 
                             break
                         }
@@ -178,7 +204,7 @@ ApplicationWindow {
                     onS_Clicked:
                     {
                         chkModel.addRawItem(itm,Number(prc))
-                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
+                        idBannerLast.text = "Rs. "+chkModel.getTotalCost()
 
                     }
 
@@ -193,7 +219,7 @@ ApplicationWindow {
 
                     onMc_Clicked: {
                         chkModel.addRawItem(itm,Number(prc))
-                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
+                        idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                     }
                 }
             }
@@ -205,7 +231,7 @@ ApplicationWindow {
                 DesertPage{
                     onD_Clicked: {
                         chkModel.addRawItem(itm,Number(prc))
-                        idButtonCheckoutPage.text = "CheckOut ("+chkModel.getTotalCost()+")"
+                        idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                     }
 
                 }
@@ -222,10 +248,21 @@ ApplicationWindow {
                 id:idCheckOutPage
                 anchors.fill : parent
                 visible: true
+                Text {
+                    id: idNoItems
+                    text: qsTr("<b>oops!! </b>No Items In the CheckOut <b>:( ")
+                    anchors.centerIn: parent
+                }
                 CheckoutPage{
                     onUpdatedCheckoutCost:
                     {
-                        idButtonCheckoutPage.text = "Checkout ("+chkModel.getTotalCost()+")"
+                        idBannerLast.text = "Rs. "+chkModel.getTotalCost()
+                        if(chkModel.getTotalCost()==0){
+                            idNoItems.visible=true
+                        }
+                        else{
+                            idNoItems.visible=false
+                        }
 
                     }
 
@@ -239,6 +276,62 @@ ApplicationWindow {
 
                 anchors.fill: parent
                 Column{
+                    Rectangle
+                    {
+                        border.color: "#4DAD87"
+                        border.width: 4
+                        height: root.height>root.width ? desTab.height- desTab.height*0.93 : desTab.height- desTab.height*0.88
+                        width: desTab.width
+                        color: "white"
+                        id: rowRect
+                        z:1
+
+                        Row
+                        {
+                            spacing: 0
+                            Rectangle{
+                                height: rowRect.height
+                                width: root.width -root.width*.25
+                                color: "transparent"
+
+                                TextEdit
+                                {
+                                    id: findText
+
+                                    anchors.leftMargin: root.width -root.width*.98
+                                    anchors.topMargin:rowRect.height-rowRect.height*.70
+                                    anchors.fill: parent
+                                    anchors.centerIn: parent
+                                    font.pixelSize: 30
+                                    onTextChanged: {
+                                        mySearchModel.removeAllData()
+                                        mySearchModel.search(findText.text)
+                                    }
+
+
+                                }
+                            }
+                            Rectangle{
+
+                                height: rowRect.height
+                                width: root.width -root.width*.74
+                                color: "#4DAD87"
+                                Button
+                                {
+                                    anchors.fill: parent
+                                    text: "Search"
+                                    z:1
+
+                                    onClicked:
+                                    {
+                                        mySearchModel.removeAllData()
+                                        mySearchModel.search(findText.text)
+
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     Rectangle
                     {
@@ -251,56 +344,20 @@ ApplicationWindow {
                             onAddFromSearch:
                             {
                                 chkModel.addRawItem(itm,Number(prc))
-                                idButtonCheckoutPage.text = "Checkout ("+chkModel.getTotalCost()+")"
+                                idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                             }
                         }
                     }
 
-                    Rectangle
-                    {
-                        border.color: "black"
-                        border.width: 2
-                        height: desTab.height- desTab.height*0.88
-                        width: desTab.width
-                        color: "yellow"
-                        id: rowRect
-                        z:1
 
-                        Row
-                        {
-                            spacing: 0
-
-                            TextEdit
-                            {
-                                id: findText
-                                height: rowRect.height
-                                width: rowRect.width -rowRect.width*.25
-                                anchors.leftMargin: rowRect.width -rowRect.width*.60
-                                font.pixelSize: 50
-
-
-                            }
-                            Button
-                            {
-                                height: rowRect.height
-                                width: rowRect.width -rowRect.width*.75
-                                text: "find"
-                                z:1
-                                onClicked:
-                                {
-                                    mySearchModel.removeAllData()
-                                    mySearchModel.search(findText.text)
-                                    //                                    console.log(findText.text)
-                                }
-                            }
-                        }
-                    }
 
                 }
 
             }
 
         }
+
+
 
 
 
@@ -323,7 +380,7 @@ ApplicationWindow {
             implicitHeight: 25
 
             radius: width
-            color: "black"
+            color: "green"
 
             opacity: index === swipeView.currentIndex ? 0.95 : pressed ? 0.7 : 0.45
 

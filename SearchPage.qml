@@ -11,8 +11,9 @@ Item {
     property real search_height :Screen.height
     property real search_width :Screen.width
     property real search_index: 3
+    property real rectHeight: search_height>search_width ? search_height-search_height*0.93: search_height-search_height*0.9
 
-    property real fontSize: 55
+    property real fontSize: 30
     anchors.fill: parent
     id:root
 
@@ -22,100 +23,91 @@ Item {
     Component {
         id: mysearchDeligate
 
+        Rectangle{
+            height: rectHeight
+            width: search_width
+            border.color: "white"
+            border.width: 2
+            color: "#4DAD87"
 
-        Row
-        {
-            spacing: 10
-
-
-            Rectangle
+            Row
             {
-                id : idSearchIdRect
-                height: search_height-search_height*.90
-                width: search_width-search_width*.80
-                color: "lightgrey"
+                spacing: 5
 
-
-                Text
+                Rectangle
                 {
-
-                    id :text1
-                    text : "  "+searchId
-                    font.pixelSize :fontSize
-                    anchors.centerIn: parent
-
-                }
-            }
-            Rectangle
-            {
-                id : idSearchItemRect
-                height: search_height-search_height*.90
-                width: search_width-search_width*.53
-                color: "lightgrey"
+                    id : idSearchIdRect
+                    height: rectHeight
+                    width: search_width-search_width*.80 //20
+                    color: "transparent"
 
 
-                Row
-                {
-                    Text { font.pixelSize :fontSize; text: searchItem }
-
-                    anchors.centerIn: parent
-                }
-            }
-
-            Rectangle
-            {
-                id : idSearchPriceRect
-                height: search_height-search_height*.90
-                width: search_width-search_width*.80
-                color: "lightgrey"
-                Text
-                {
-
-                    id :text2
-
-                    text : "Rs. "+searchPrice
-                    anchors.centerIn: parent
-                    anchors.verticalCenter: rect2
-                    font.pixelSize :fontSize
-                    font.family: "Freedom"
-
-                }
-            }
-
-
-            Rectangle
-            {
-                id : delRect
-                height: search_height-search_height*.90
-                width: search_width-search_width*.90
-                //radius: 32/2
-                border.color: "green"
-                border.width: 7
-                anchors.left: text1.right
-
-                Text {
-
-                    text: qsTr("+")
-                    font.bold: true
-                    font.pixelSize: fontSize
-                    anchors.centerIn: delRect
-                    color: "red"
-                }
-
-                MouseArea
-                {
-                    anchors.fill: parent
-                    onClicked:
+                    Text
                     {
-                        console.log("clicked ADD")
-                         addFromSearch(searchItem,searchPrice)
+
+                        id :text1
+                        text : "  "+searchId
+                        font.pixelSize :fontSize
+                        anchors.centerIn: parent
 
                     }
                 }
+
+                Rectangle
+                {
+                    id : idSearchItemRect
+                    height: rectHeight
+                    width: search_width-search_width*.60 //30
+                    color: "transparent"
+
+
+                    Row
+                    {
+                        Text { font.pixelSize :fontSize; text: searchItem }
+
+                        anchors.centerIn: parent
+                    }
+                }
+
+                Rectangle
+                {
+                    id : idSearchPriceRect
+                    height: rectHeight
+                    width: search_width-search_width*.80 //20
+                    color: "transparent"
+                    Text
+                    {
+
+                        id :text2
+
+                        text : "Rs. "+searchPrice
+                        anchors.centerIn: parent
+                        anchors.verticalCenter: rect2
+                        font.pixelSize :fontSize
+
+                    }
+                }
+
+
+                Rectangle
+                {
+                    id : delRect
+                    height: rectHeight
+                    width: search_width-search_width*.85 //10
+                    color: "transparent"
+
+                    Button{
+                        text: "+"
+                        onClicked: {
+                            addFromSearch(searchItem,searchPrice)
+                        }
+                    }
+
+                }
+
+
+
             }
-
-
-
         }
     }
 
@@ -129,22 +121,12 @@ Item {
         anchors.fill: parent
         model: mySearchModel
         delegate: mysearchDeligate
-
-
-
-
-
+         spacing: 4
 
         add: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
             NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
         }
-
-//        displaced: Transition {
-//            NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
-//        }
-
-
 
 
     }

@@ -11,108 +11,137 @@ Item {
     property real chk_height :Screen.height
     property real chk_width :Screen.width
     property real chk_index: 3
+    property real rect_height :chk_height>chk_width ? chk_height-chk_height*0.93: chk_height-chk_height*0.9
+
 
     property real fontSize: 30
     anchors.fill: parent
     id:root
     signal updatedCheckoutCost(int updatedCheckoutprice)
 
+
     Component {
         id: myChkDeligate
 
-        Row
-        {
-            spacing: 10
-            Rectangle
+        Rectangle{
+            height: rect_height
+            width: chk_width
+            color: "#7DB7E7"
+            border.width: 2
+            border.color: "white"
+
+
+            Row
             {
-                id : idChkItemRect
-                height: chk_height-chk_height*0.9
-                width: chk_width-chk_width*0.50
-                color: "lightgrey"
-                Text
+                spacing: 5
+                Rectangle
                 {
-                    id :text1
-                    text : "IDXXX"+"  "+chkItem
-                    anchors.verticalCenter: parent
-                    font.pixelSize :fontSize
+                    id : idChkIDRect
+                    height: rect_height
+                    width: chk_width-chk_width*.85 //15
+                    color: "transparent"
 
-                }
-            }
-            Rectangle
-            {
-                id : idChkPriceRect
-                height: chk_height-chk_height*0.9
-                width: chk_width-chk_width*.80
-                color: "lightgrey"
-
-
-                Row
-                {
-                    Text {  font.pixelSize: fontSize; text: chkSingleItemPrice }
-                    Text {  font.pixelSize: fontSize; text: " x " }
-                    Text {  font.pixelSize: fontSize; text: chkQuantity}
-                    anchors.centerIn: parent
-                }
-            }
-
-            Rectangle
-            {
-                id : idChkAmountRect
-                height: chk_height-chk_height*0.9
-                width: chk_width-chk_width*.85
-                color: "lightgrey"
-                Text
-                {
-
-                    id :text2
-
-                    text : "Rs. "+chkAmount
-                    anchors.centerIn: parent
-                    anchors.verticalCenter: parent
-                    font.pixelSize :fontSize
-                    font.family: "Freedom"
-
-                    //onTextChanged:{ text1.text=  index+1+". "+ addDot(chkItem) +"Rs "+chkAmount}
-                }
-            }
-
-
-            Rectangle
-            {
-                id : delRect
-                height: chk_height-chk_height*0.9
-                width: chk_width-chk_width*.90
-                //radius: 32/2
-                border.color: "red"
-                border.width: 7
-                anchors.left: text1.right
-
-                Text {
-
-                    text: qsTr("x")
-                    font.bold: true
-                    font.pixelSize: fontSize
-                    anchors.centerIn: delRect
-                    color: "red"
-                }
-
-                MouseArea
-                {
-                    anchors.fill: parent
-                    onClicked:
+                    Text
                     {
-                        console.log(index)
-                        chkModel.removeData(index)
-                        updatedCheckoutCost(updateTotalAmount())
+                        id :text0
+                        text : "IDXXX"
+                        anchors.centerIn: parent
+                        font.pixelSize :fontSize
 
+                    }
+                }
+                Rectangle
+                {
+                    id : idChkItemRect
+                    height: rect_height
+                    width: chk_width-chk_width*.70 //30
+                    color: "transparent"
+
+                    Text
+                    {
+                        id :text1
+                        text : chkItem
+                        anchors.centerIn: parent
+                        font.pixelSize :fontSize
+                        font.bold: true
+
+                    }
+                }
+                Rectangle
+                {
+                    id : idChkPriceRect
+                    height: rect_height
+                    width: chk_width-chk_width*.70 //30
+                    color: "transparent"
+
+                    Row
+                    {
+                        Text {  font.pixelSize: fontSize; text: chkSingleItemPrice}
+                        Text {  font.pixelSize: fontSize; text: " x " }
+                        Text {  font.pixelSize: fontSize; text: chkQuantity}
+                         anchors.centerIn: parent
+
+                    }
+                }
+
+                Rectangle
+                {
+                    id : idChkAmountRect
+                    height: rect_height
+                    width: chk_width-chk_width*.90 //10
+                    color: "transparent"
+
+                    Text
+                    {
+
+                        id :text2
+
+                        text : "Rs. "+chkAmount
+                        anchors.centerIn: parent
+                        font.pixelSize :fontSize
+                        font.family: "Freedom"
 
 
                     }
                 }
+
+
+                Rectangle
+                {
+                    id : delRect
+                    height: rect_height
+                    width: chk_width-chk_width*.90 //10
+                    radius: delRect.height/2
+                    anchors.left: text1.right
+                    color: "transparent"
+
+                    Text {
+
+                        text: qsTr("x")
+                        font.bold: true
+                        font.pixelSize: fontSize+20
+                        anchors.centerIn: delRect
+                        color: "red"
+
+                    }
+
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onClicked:
+                        {
+                            console.log(index)
+                            chkModel.removeData(index)
+                            updatedCheckoutCost(updateTotalAmount())
+
+
+
+                        }
+                    }
+                }
+
+
             }
-
-
-
         }
     }
 
@@ -126,9 +155,9 @@ Item {
         anchors.fill: parent
         model: chkModel
         delegate: myChkDeligate
-        spacing: 10
+        spacing: 4
 
-        anchors.leftMargin: chk_width-chk_width*.99
+        // anchors.leftMargin: chk_width-chk_width*.99
 
 
         //        add: Transition {
