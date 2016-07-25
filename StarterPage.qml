@@ -30,46 +30,30 @@ Item
 
         Rectangle {
 
+
             height: heightForOneCell
             width: widthForOneCell
 
             border.color: "white"
             border.width: 3
             color: "lightgreen"
-//            Text {
-//                id: tex11
-//                text: stId+" "+stItem + "  "+ stPrice
-//                anchors.centerIn: parent
-//                font.pixelSize: 30
 
-
-//            }
-//            MouseArea
-//            {
-//                anchors.fill: parent
-//                onPressed:  {
-
-//                    parent.color ="blue"
-//                }
-
-//                onReleased:  {
-//                    parent.color ="red"
-//                    s_Clicked(stItem,stPrice)
-
-//                }
-
-
-
-//            }
             Button
             {
-               text: stId+" "+stItem + "  "+ stPrice
-               anchors.fill: parent
 
-               onClicked:
-               {
-                   s_Clicked(stItem,stPrice)
-               }
+                Column{
+                    spacing: 1
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: stId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "<b>"+stItem;font.pixelSize: 35;anchors.centerIn: parent;font.capitalization:Font.Capitalize} color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "Rs. <b>"+stPrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
+                    anchors.centerIn: parent
+                }
+                anchors.fill: parent
+
+                onClicked:
+                {
+                    s_Clicked(stItem,stPrice)
+                }
             }
 
 
@@ -83,7 +67,7 @@ Item
         anchors.fill: parent
         anchors.leftMargin: marginBetweenEachCell*2.5
         anchors.bottomMargin: starter_hight-starter_hight*.82
-        //anchors.topMargin:  starter_hight-starter_hight*.85
+        maximumFlickVelocity:10000
 
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: stModel

@@ -34,32 +34,22 @@ Item
             border.width: 3
             color: "yellow"
             Button {
-                id: tex11
-                text: mainCourseItem + "  "+ mainCoursePrice
-                anchors.fill: parent
-                //font.pixelSize: 30
+
+                Column{
+                    spacing: 1
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: mainCourseId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "<b>"+mainCourseItem;font.pixelSize: 35;anchors.centerIn: parent;font.capitalization:Font.Capitalize} color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "Rs. <b>"+mainCoursePrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
+                    anchors.centerIn: parent
+                }
+                 anchors.fill: parent
                 onClicked: {
                      mc_Clicked(mainCourseItem,mainCoursePrice)
                 }
 
 
             }
-//            MouseArea
-//            {
-//                anchors.fill: parent
-//                onPressed:  {
 
-//                    parent.color ="blue"
-//                }
-
-//                onReleased:  {
-//                    parent.color ="red"
-//                    mc_Clicked(MainCourseItem,MainCoursePrice)
-
-//                }
-
-
-//            }
 
 
 
@@ -74,7 +64,7 @@ Item
         anchors.bottomMargin: mainCourse_hight-mainCourse_hight*.82
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: mainCourseModel
-
+        maximumFlickVelocity:10000
         delegate: myDeligate
 
 

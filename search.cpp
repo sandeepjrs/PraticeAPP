@@ -74,12 +74,40 @@ void SearchModel::search(QString item)
         {
             if(strModel.getStarterList().at(i).get_stItem().startsWith(item,Qt::CaseInsensitive))
             {
-                qWarning()<<"yes I am present  "+strModel.getStarterList().at(i).get_stItem();
+                //qWarning()<<"yes I am present  "+strModel.getStarterList().at(i).get_stItem();
                 addSearchItem(Search(strModel.getStarterList().at(i).get_stId(),
                                      strModel.getStarterList().at(i).get_stItem(),
                                      strModel.getStarterList().at(i).get_stPrice()));
             }
         }
+
+
+        DesertModel dsrModel;
+        for (int i = 0; i < dsrModel.rowCount(); i++)
+        {
+            if(dsrModel.getStarterList().at(i).get_stItem().startsWith(item,Qt::CaseInsensitive))
+            {
+                //qWarning()<<"yes I am present  "+dsrModel.getStarterList().at(i).get_stItem();
+                addSearchItem(Search(dsrModel.getStarterList().at(i).get_stId(),
+                                     dsrModel.getStarterList().at(i).get_stItem(),
+                                     dsrModel.getStarterList().at(i).get_stPrice()));
+            }
+        }
+
+        MainCourseModel mcModel;
+        for (int i = 0; i < mcModel.rowCount(); i++)
+        {
+            if(mcModel.getStarterList().at(i).get_stItem().startsWith(item,Qt::CaseInsensitive))
+            {
+                //qWarning()<<"yes I am present  "+mcModel.getStarterList().at(i).get_stItem();
+                addSearchItem(Search(mcModel.getStarterList().at(i).get_stId(),
+                                     mcModel.getStarterList().at(i).get_stItem(),
+                                     mcModel.getStarterList().at(i).get_stPrice()));
+            }
+        }
+
+
+
     }
 
 

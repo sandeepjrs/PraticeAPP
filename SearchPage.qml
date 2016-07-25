@@ -101,6 +101,7 @@ Item {
                         onClicked: {
                             addFromSearch(searchItem,searchPrice)
                         }
+                        anchors.fill: parent
                     }
 
                 }

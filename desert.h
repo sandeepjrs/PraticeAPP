@@ -8,14 +8,16 @@
 class Desert
 {
 public:
-    Desert(const QString &stItem, const QString &stPrice);
+    Desert(const QString &sId,const QString &stItem, const QString &stPrice);
 
     QString get_stItem() const;
     QString get_stPrice() const;
+    QString get_stId() const;
 
 private:
     QString m_stItem;
     QString m_stPrice;
+     QString m_sid;
 };
 
 
@@ -27,7 +29,8 @@ class DesertModel : public QAbstractListModel
 public:
     enum StarterRoles {
         e_stItemRole = Qt::UserRole + 1,
-        e_stPriceRole
+        e_stPriceRole,
+        e_sId
     };
 
     DesertModel(QObject *parent = 0);
@@ -35,6 +38,7 @@ public:
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
      QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
+     QList<Desert> getStarterList();
 
 protected:
     QHash<int, QByteArray> roleNames() const;
@@ -42,7 +46,7 @@ protected:
 
 
 private :
-    QList<Desert> m_Deserts;
+    static QList<Desert> m_Deserts;
 };
 
 

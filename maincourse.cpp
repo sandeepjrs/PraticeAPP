@@ -1,9 +1,9 @@
 #include "maincourse.h"
 
+QList<MainCourse> MainCourseModel::m_MainCourses;
 
-
-MainCourse::MainCourse(const QString &stItem, const QString &stPrice)
-    : m_stItem(stItem), m_stPrice(stPrice)
+MainCourse::MainCourse(const QString &sId, const QString &stItem, const QString &stPrice)
+    : m_stItem(stItem), m_stPrice(stPrice),m_sid(sId)
 {
 
 }
@@ -17,6 +17,11 @@ QString MainCourse::get_stItem() const
 QString MainCourse::get_stPrice() const
 {
     return m_stPrice;
+}
+
+QString MainCourse::get_stId() const
+{
+    return m_sid;
 }
 
 
@@ -49,7 +54,15 @@ QVariant MainCourseModel::data(const QModelIndex &index, int role) const
             return MainCourseObject.get_stItem();
         else if (role == e_stPriceRole)
             return MainCourseObject.get_stPrice();
+        else if(role==e_sId)
+            return MainCourseObject.get_stId();
         return QVariant();
+
+}
+
+QList<MainCourse> MainCourseModel::getStarterList()
+{
+    return m_MainCourses;
 
 }
 
@@ -58,6 +71,7 @@ QHash<int, QByteArray> MainCourseModel::roleNames() const
     QHash<int, QByteArray> roles;
        roles[e_stItemRole] = "mainCourseItem";
        roles[e_stPriceRole] = "mainCoursePrice";
+       roles[e_sId]="mainCourseId";
        return roles;
 
 }

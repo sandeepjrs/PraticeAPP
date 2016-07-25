@@ -1,8 +1,10 @@
 #include "desert.h"
 
+QList<Desert> DesertModel::m_Deserts;
 
-Desert::Desert(const QString &stItem, const QString &stPrice)
-    : m_stItem(stItem), m_stPrice(stPrice)
+
+Desert::Desert(const QString &sId, const QString &stItem, const QString &stPrice)
+    : m_stItem(stItem), m_stPrice(stPrice), m_sid(sId)
 {
 
 }
@@ -16,6 +18,11 @@ QString Desert::get_stItem() const
 QString Desert::get_stPrice() const
 {
     return m_stPrice;
+}
+
+QString Desert::get_stId() const
+{
+    return m_sid;
 }
 
 
@@ -48,8 +55,15 @@ QVariant DesertModel::data(const QModelIndex &index, int role) const
             return DesertObject.get_stItem();
         else if (role == e_stPriceRole)
             return DesertObject.get_stPrice();
+        else if(role==e_sId)
+            return DesertObject.get_stId();
         return QVariant();
 
+}
+
+QList<Desert> DesertModel::getStarterList()
+{
+    return m_Deserts;
 }
 
 QHash<int, QByteArray> DesertModel::roleNames() const
@@ -57,6 +71,7 @@ QHash<int, QByteArray> DesertModel::roleNames() const
     QHash<int, QByteArray> roles;
        roles[e_stItemRole] = "desertItem";
        roles[e_stPriceRole] = "desertPrice";
+       roles[e_sId]="desertId";
        return roles;
 
 }

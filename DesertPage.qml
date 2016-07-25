@@ -34,10 +34,15 @@ Item
             border.width: 3
             color: "pink"
             Button {
-                id: tex11
-                text: desertItem + "  "+ desertPrice
+
+                Column{
+                    spacing: 1
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: desertId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "<b>"+desertItem;font.pixelSize: 35;anchors.centerIn: parent;font.capitalization:Font.Capitalize} color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "Rs. <b>"+desertPrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
+                    anchors.centerIn: parent
+                }
                 anchors.fill: parent
-                //font.pixelSize: 30
                 onClicked: {
                     d_Clicked(desertItem,desertPrice)
                 }
@@ -74,7 +79,7 @@ Item
         anchors.bottomMargin: desert_hight-desert_hight*.82
         cellWidth: widthForOneCell; cellHeight: heightForOneCell
         model: desertModel
-
+        maximumFlickVelocity:10000
         delegate: myDeligate
 
 

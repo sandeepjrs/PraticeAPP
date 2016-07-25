@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     int i=0;
 
     /*Reading Starter Data*/
-    QJsonValue starterObject = object.value("Desert");
+    QJsonValue starterObject = object.value("Starter");
     QJsonArray starterArray=starterObject.toArray();
 
     QJsonObject starterValue;
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
     /*Reading MainCourse Data*/
 
-    QJsonValue mainCourseObject = object.value("Desert");
+    QJsonValue mainCourseObject = object.value("MainCourse");
     QJsonArray mainCourseArray=mainCourseObject.toArray();
 
     QJsonObject mainCourseValue;
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
         }
         else {
             qWarning()<<tempID.toString()<<"  "<<tempItem.toString()<<"  "<<tempPrice.toString();
-            mcModel.addMainCourseItem(MainCourse(tempItem.toString(), tempPrice.toString()));
+            mcModel.addMainCourseItem(MainCourse(tempID.toString(),tempItem.toString(), tempPrice.toString()));
             i++;
         }
 
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
     /*Reading Desert Data*/
 
     QJsonValue desertObject = object.value("Desert");
-    QJsonArray desertArray=mainCourseObject.toArray();
+    QJsonArray desertArray=desertObject.toArray();
 
     QJsonObject desertValue;
 
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
         }
         else {
             qWarning()<<tempID.toString()<<"  "<<tempItem.toString()<<"  "<<tempPrice.toString();
-            desModel.addDesertItem(Desert(tempItem.toString(), tempPrice.toString()));
+            desModel.addDesertItem(Desert(tempID.toString(),tempItem.toString(), tempPrice.toString()));
             i++;
         }
 
