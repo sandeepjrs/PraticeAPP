@@ -17,7 +17,7 @@ Item {
     anchors.fill: parent
     id:root
 
-    signal addFromSearch(string itm,string prc)
+    signal addFromSearch(string id,string itm,string prc)
 
 
     Component {
@@ -99,7 +99,7 @@ Item {
                     Button{
                         text: "+"
                         onClicked: {
-                            addFromSearch(searchItem,searchPrice)
+                            addFromSearch(idSearchIdRect,searchItem,searchPrice)
                         }
                         anchors.fill: parent
                     }

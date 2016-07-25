@@ -16,7 +16,7 @@ Item
 
 
 
-    signal d_Clicked(string itm, string prc)
+    signal d_Clicked(string id,string itm, string prc)
     height: desert_hight
     width: desert_width
     id:root
@@ -44,27 +44,12 @@ Item
                 }
                 anchors.fill: parent
                 onClicked: {
-                    d_Clicked(desertItem,desertPrice)
+                    d_Clicked(desertId,desertItem,desertPrice)
                 }
 
 
             }
-//            MouseArea
-//            {
-//                anchors.fill: parent
-//                onPressed:  {
 
-//                    parent.color ="blue"
-//                }
-
-//                onReleased:  {
-//                    parent.color ="red"
-//                    d_Clicked(desertItem,desertPrice)
-
-//                }
-
-
-//            }
 
 
 

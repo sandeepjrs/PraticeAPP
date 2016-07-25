@@ -203,7 +203,7 @@ ApplicationWindow {
                 StarterPage{
                     onS_Clicked:
                     {
-                        chkModel.addRawItem(itm,Number(prc))
+                        chkModel.addRawItem(id,itm,Number(prc))
                         idBannerLast.text = "Rs. "+chkModel.getTotalCost()
 
                     }
@@ -218,7 +218,7 @@ ApplicationWindow {
                 MainCoursePage{
 
                     onMc_Clicked: {
-                        chkModel.addRawItem(itm,Number(prc))
+                        chkModel.addRawItem(id,itm,Number(prc))
                         idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                     }
                 }
@@ -230,7 +230,7 @@ ApplicationWindow {
                 visible: false
                 DesertPage{
                     onD_Clicked: {
-                        chkModel.addRawItem(itm,Number(prc))
+                        chkModel.addRawItem(id,itm,Number(prc))
                         idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                     }
 
@@ -343,7 +343,7 @@ ApplicationWindow {
                         {
                             onAddFromSearch:
                             {
-                                chkModel.addRawItem(itm,Number(prc))
+                                chkModel.addRawItem(id,itm,Number(prc))
                                 idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                             }
                         }

@@ -44,7 +44,7 @@ Item {
                     Text
                     {
                         id :text0
-                        text : "IDXXX"
+                        text : chkId
                         anchors.centerIn: parent
                         font.pixelSize :fontSize
 

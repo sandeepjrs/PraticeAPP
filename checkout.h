@@ -7,8 +7,9 @@
 class Checkout
 {
 public:
-    Checkout(const QString &item, const int &Amount, const int quantity, const int &singleItemPrice);
+    Checkout(const QString &id,const QString &item, const int &Amount, const int quantity, const int &singleItemPrice);
 
+    QString get_id() const;
     int get_Amount() const;
     int get_quantity() const;
     int get_singleItemPrice() const;
@@ -17,6 +18,7 @@ public:
 
 
 private:
+    QString m_id;
     int m_amount;
     int m_quantity;
     int m_singleItemPrice;
@@ -35,7 +37,8 @@ public:
         e_amount = Qt::UserRole + 1,
         e_quantity,
         e_item,
-        e_singleItemPrice
+        e_singleItemPrice,
+        e_id
 
     };
 
@@ -47,7 +50,7 @@ public:
 
     //public slots:
 
-    Q_INVOKABLE void addRawItem(QString item, int price);
+    Q_INVOKABLE void addRawItem(QString id,QString item, int price);
     Q_INVOKABLE int getTotalCost();
     Q_INVOKABLE bool removeData(int index);
     Q_INVOKABLE int getAmount(int i);

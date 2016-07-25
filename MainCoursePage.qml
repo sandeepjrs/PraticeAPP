@@ -16,7 +16,7 @@ Item
 
 
 
-    signal mc_Clicked(string itm, string prc)
+    signal mc_Clicked(string id,string itm, string prc)
     height: mainCourse_hight
     width: mainCourse_width
     id:root
@@ -44,7 +44,7 @@ Item
                 }
                  anchors.fill: parent
                 onClicked: {
-                     mc_Clicked(mainCourseItem,mainCoursePrice)
+                     mc_Clicked(mainCourseId,mainCourseItem,mainCoursePrice)
                 }
 
 

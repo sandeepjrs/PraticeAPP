@@ -1,9 +1,15 @@
 #include "checkout.h"
 
 
-Checkout::Checkout(const QString &item, const int &Amount, const int quantity, const int &singleItemPrice)
-    :m_amount(Amount), m_item(item), m_quantity(quantity),m_singleItemPrice(singleItemPrice)
+Checkout::Checkout(const QString &id, const QString &item, const int &Amount, const int quantity, const int &singleItemPrice)
+    :m_amount(Amount), m_item(item), m_quantity(quantity),m_singleItemPrice(singleItemPrice),m_id(id)
 {
+
+}
+
+QString Checkout::get_id() const
+{
+    return m_id;
 
 }
 
@@ -65,6 +71,8 @@ QVariant CheckoutModel::data(const QModelIndex &index, int role) const
 
     else if (role==e_singleItemPrice)
         return checkoutObject.get_singleItemPrice();
+    else if (role==e_id)
+        return checkoutObject.get_id();
 
     return QVariant();
 }
@@ -111,9 +119,7 @@ int CheckoutModel::searchItemGetQuantity(QString item)
         {
             if(m_amount.at(i).get_Itemt()==item)
             {
-                //quant++;
-                //quant=m_amount.at(i).get_quantity();
-                qWarning()<<"chk running";
+
                 return i;
 
 
@@ -129,20 +135,20 @@ int CheckoutModel::searchItemGetQuantity(QString item)
 
 }
 
-void CheckoutModel::addRawItem(QString item, int price)
+void CheckoutModel::addRawItem(QString id,QString item, int price)
 {
     int amt_index;
     amt_index=searchItemGetQuantity(item);
     qWarning()<<"amt index  "+ amt_index;
     if(amt_index==-1)
     {
-        addCheckoutItem(Checkout(item,price,1,price));
+        addCheckoutItem(Checkout(id,item,price,1,price));
     }
     else
     {
 
         int quant=m_amount.at(amt_index).get_quantity()+1;
-        addCheckoutItem(Checkout(item,quant*price,quant,price));
+        addCheckoutItem(Checkout(id,item,quant*price,quant,price));
         removeData(amt_index);
     }
 }
@@ -172,6 +178,7 @@ QHash<int, QByteArray> CheckoutModel::roleNames() const
     roles[e_quantity]="chkQuantity";
     roles[e_item] = "chkItem";
     roles[e_singleItemPrice] = "chkSingleItemPrice";
+    roles[e_id] = "chkId";
     return roles;
 
 }

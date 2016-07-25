@@ -16,7 +16,7 @@ Item
 
 
 
-    signal s_Clicked(string itm, string prc)
+    signal s_Clicked(string id,string itm, string prc)
     height: starter_hight
     width: starter_width
     id:root
@@ -52,7 +52,7 @@ Item
 
                 onClicked:
                 {
-                    s_Clicked(stItem,stPrice)
+                    s_Clicked(stId,stItem,stPrice)
                 }
             }
 

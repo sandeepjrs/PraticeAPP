@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
     QByteArray jsonData = file.readAll();
     file.close();
 
-    //qWarning()<<jsonData;
 
     QJsonDocument document = QJsonDocument::fromJson(jsonData);
 
