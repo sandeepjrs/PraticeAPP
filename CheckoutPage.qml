@@ -26,6 +26,7 @@ Item {
         width: chk_width
         color: "#4DAD87"
         border.color: "white"
+        z:1
         border.width: 2
         Button{
             text: "Order!"
@@ -174,7 +175,9 @@ Item {
 
         id: chkListView
         anchors.top: idOrderRect.bottom
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
+        anchors.topMargin:idOrderRect.height
+
         model: chkModel
         delegate: myChkDeligate
         spacing: 4
