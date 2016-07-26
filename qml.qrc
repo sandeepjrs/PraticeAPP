@@ -9,5 +9,6 @@
         <file>MainCoursePage.qml</file>
         <file>SearchPage.qml</file>
         <file>NewOrderDiaglog.qml</file>
+        <file>NotificationPage.qml</file>
     </qresource>
 </RCC>

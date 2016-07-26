@@ -36,10 +36,18 @@ Item
             Button {
 
                 Column{
+//                    spacing: 1
+//                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: desertId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
+//                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "<b>"+desertItem;font.pixelSize: 35;anchors.centerIn: parent;font.capitalization:Font.Capitalize} color: "transparent"}
+//                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "Rs. <b>"+desertPrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
+//                    anchors.centerIn: parent
                     spacing: 1
-                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: desertId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
-                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "<b>"+desertItem;font.pixelSize: 35;anchors.centerIn: parent;font.capitalization:Font.Capitalize} color: "transparent"}
-                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: 150;Text{text: "Rs. <b>"+desertPrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: widthForOneCell;Text{text: desertId;font.pixelSize: 20;anchors.centerIn: parent } color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.60;width: widthForOneCell;
+                        Text{text: "<b>"+desertItem;font.pixelSize: 35;anchors.centerIn: parent;
+                            font.capitalization:Font.Capitalize;wrapMode:Text.WrapAtWordBoundaryOrAnywhere;anchors.fill: parent;horizontalAlignment:Text.AlignHCenter}
+                        color: "transparent"}
+                    Rectangle{height: heightForOneCell-heightForOneCell*.86;width: widthForOneCell;Text{text: "Rs. <b>"+desertPrice;font.pixelSize: 25;anchors.centerIn: parent } color: "transparent"}
                     anchors.centerIn: parent
                 }
                 anchors.fill: parent

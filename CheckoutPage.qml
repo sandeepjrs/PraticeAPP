@@ -18,6 +18,25 @@ Item {
     anchors.fill: parent
     id:root
     signal updatedCheckoutCost(int updatedCheckoutprice)
+    signal orderClicked()
+
+    Rectangle{
+        id:idOrderRect
+        height: rect_height
+        width: chk_width
+        color: "#4DAD87"
+        border.color: "white"
+        border.width: 2
+        Button{
+            text: "Order!"
+            anchors.fill: parent
+            onClicked: {
+                orderClicked()
+            }
+
+        }
+
+    }
 
 
     Component {
@@ -29,6 +48,8 @@ Item {
             color: "#7DB7E7"
             border.width: 2
             border.color: "white"
+            //anchors.top: idButtonRect.bottom
+
 
 
             Row
@@ -79,7 +100,7 @@ Item {
                         Text {  font.pixelSize: fontSize; text: chkSingleItemPrice}
                         Text {  font.pixelSize: fontSize; text: " x " }
                         Text {  font.pixelSize: fontSize; text: chkQuantity}
-                         anchors.centerIn: parent
+                        anchors.centerIn: parent
 
                     }
                 }
@@ -152,18 +173,12 @@ Item {
     {
 
         id: chkListView
-        anchors.fill: parent
+        anchors.top: idOrderRect.bottom
+        anchors.bottom: parent.bottom
         model: chkModel
         delegate: myChkDeligate
         spacing: 4
 
-        // anchors.leftMargin: chk_width-chk_width*.99
-
-
-        //        add: Transition {
-        //            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
-        //            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 200 }
-        //        }
 
         displaced: Transition {
             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
@@ -182,19 +197,7 @@ Item {
         return val;
     }
 
-    //    function addDot(item)
-    //    {
-    //        var i;
-    //        var len;
-    //        len=item.length;
-    //        for(i=0;i<dotLength-len;i++)
-    //        {
-    //            item=item+".";
-    //        }
 
-    //        return item
-
-    //    }
 
 }
 

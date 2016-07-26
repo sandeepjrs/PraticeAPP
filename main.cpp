@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
     SearchModel mySearchModel;
 
 
-    //QFile file("/home/sandeep/FoodApp/menu.json");
-    QFile file("/storage/emulated/legacy/foodAppData/menu.json");
+    QFile file("/home/sandeep/FoodApp/menu.json");
+    //QFile file("/storage/emulated/legacy/foodAppData/menu.json");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsonData = file.readAll();
     file.close();
