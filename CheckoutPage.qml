@@ -20,6 +20,19 @@ Item {
     signal updatedCheckoutCost(int updatedCheckoutprice)
     signal orderClicked()
 
+    ReviewScreen{
+        z:2
+        id:idReviewScreen
+        notf_visible: false
+        onOkClicked: {
+
+        }
+        onCanelClicked: {
+            idReviewScreen.notf_visible=false
+        }
+
+    }
+
     Rectangle{
         id:idOrderRect
         height: rect_height
@@ -33,6 +46,8 @@ Item {
             anchors.fill: parent
             onClicked: {
                 orderClicked()
+                idReviewScreen.notf_visible=true
+                idReviewScreen.totalAmount=updateTotalAmount()
             }
 
         }

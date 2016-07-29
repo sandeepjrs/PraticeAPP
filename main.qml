@@ -268,6 +268,8 @@ ApplicationWindow {
 
                 }
             }
+
+
         }
         Page {
             Rectangle
@@ -343,7 +345,7 @@ ApplicationWindow {
                         {
                             onAddFromSearch:
                             {
-                                chkModel.addRawItem(id,itm,Number(prc))
+                                chkModel.addRawItem(ids,itm,Number(prc))
                                 idBannerLast.text = "Rs. "+chkModel.getTotalCost()
                             }
                         }

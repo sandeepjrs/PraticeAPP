@@ -17,7 +17,7 @@ Item {
     anchors.fill: parent
     id:root
 
-    signal addFromSearch(string id,string itm,string prc)
+    signal addFromSearch(string ids,string itm,string prc)
 
 
     Component {
@@ -99,7 +99,7 @@ Item {
                     Button{
                         text: "+"
                         onClicked: {
-                            addFromSearch(idSearchIdRect,searchItem,searchPrice)
+                            addFromSearch(searchId,searchItem,searchPrice)
                         }
                         anchors.fill: parent
                     }
@@ -122,7 +122,7 @@ Item {
         anchors.fill: parent
         model: mySearchModel
         delegate: mysearchDeligate
-         spacing: 4
+        spacing: 4
 
         add: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 200 }
